@@ -8,7 +8,7 @@ class ManagerSales extends Connexion // hérite de la classe connexion
    public function getPacks($wishedOrder) {
      $sql = 'SELECT edition, price, releasedate, picture, description FROM tbl_packs order by :order';
 	   $packs = self::getConnexion()->prepare($sql);
-     $packs->bindparam('order',$wishedOrder,pdo::PARAM_STRING);
+     $packs->bindparam('order',$wishedOrder,pdo::PARAM_STR);
      $packs->execute();
 	   return $packs;
     }

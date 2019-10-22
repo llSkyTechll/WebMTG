@@ -5,7 +5,7 @@ try {
 	if (isset($_GET['action'])) {
 		switch ($_GET['action'] ) {
 			case 'accueil':
-				choixPays();
+				packList();
 				break;
 			case 'panier':
 				ListeProvinces();
@@ -22,7 +22,7 @@ try {
 		}
 	}
 	else {
-		choixPays();
+		packList();
 	}
 }
 

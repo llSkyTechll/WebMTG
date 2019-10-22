@@ -9,7 +9,7 @@ function packList()
   }
   $packs = new ManagerSales;
   $resultPacks=$packs->getPacks($wishedOrder);
-  require('view/ViewPays.php');
+  require('view/viewAccueil.php');
 }
 
 function ListeProvinces(){
