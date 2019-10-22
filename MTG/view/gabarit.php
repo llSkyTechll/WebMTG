@@ -1,12 +1,3 @@
-
-<?php
-    if(!empty($_POST))
-    {
-        setcookie('pays',htmlentities($_POST["pays"]),time()+365*24*3600,null,null,false,true);
-    }
-   
-?>
-
 <!doctype html>
 <html>
 <head>
@@ -23,17 +14,17 @@
 </head>
 
 <body>
-<div class="form-group">
-  <div class="pure-u-1 pure-u-md-2-3 pure-u-lg-4-5"> <!--pure-u-1 pure-u-md-2-3 pure-u-lg-4-5 -->
+<div class="d-flex row">
+  <div class="col-md-12 from-group offset-sm-4">
     <?php require('view_menu.php'); ?>
   </div>          
-  <div class="pure-u-1 pure-u-md-2-3 pure-u-lg-4-5"><!-- pure-u-1 pure-u-md-2-3 pure-u-lg-1-5 -->
+  <div class="col-md-12">
     <article> 
       <H1> <?php echo $titre ?></H1>
     </article>
   </div>   
-    <div class="pure-u-1 pure-u-md-2-3 pure-u-lg-3-5 form-box"> <!-- pure-u-1 pure-u-md-2-3 pure-u-lg-3-5 form-box -->
-		  <?php echo $contenu ?>   <!-- Élément spécifique -->		
+    <div class="col-md-12 form-group"> 
+		  <?php echo $contenu ?>  		
 	  </div>
 </div>
 
