@@ -6,9 +6,9 @@ class ManagerSales extends Connexion // hérite de la classe connexion
 {
    // Renvoie la liste des membres triés par nom dans l'ordre alphabétique
    public function getPacks($wishedOrder) {
-     $sql = 'SELECT edition, price, releasedate, picture, description FROM tbl_packs order by :order';
+     $sql = 'SELECT edition, price, releasedate, picture, description FROM tbl_packs ORDER BY '.$wishedOrder;
+     echo $sql;
 	   $packs = self::getConnexion()->prepare($sql);
-     $packs->bindparam('order',$wishedOrder,pdo::PARAM_STR);
      $packs->execute();
 	   return $packs;
     }

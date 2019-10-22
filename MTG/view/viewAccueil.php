@@ -6,10 +6,10 @@
 <form class="pure-form pure-form-aligned" action="index.php?action=accueil" method="post" >
 	<fieldset>
         <div class="pure-control-group">
-					<select name="order" onchange="submit()">
-						<option value="releasedate">Date de sortie</option>
+					<select name="packorder" onchange="submit()">
 						<option value="edition">Edition</option>
-						<option value="price DESC">Prix</option>
+						<option value="releasedate">Date de sortie</option>
+						<option value="price">Prix</option>
 					</select>
 
           <select name="packs" onchange="">
