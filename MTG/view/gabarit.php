@@ -15,15 +15,15 @@
 
 <body>
 <div class="d-flex row">
-  <div class="col-md-12 from-group offset-sm-4">
+  <div class="col-md-12 from-group offset-sm-5">
     <?php require('view_menu.php'); ?>
   </div>          
-  <div class="col-md-12">
+  <div class="col-md-12 offset-sm-6">
     <article> 
       <H1> <?php echo $titre ?></H1>
     </article>
   </div>   
-    <div class="col-md-12 form-group"> 
+    <div class="col-md-12 form-group offset-sm-6"> 
 		  <?php echo $contenu ?>  		
 	  </div>
 </div>
