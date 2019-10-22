@@ -3,7 +3,7 @@ require('model/ManagerSales.php');
 
 function packList()
 {
-  $wishedOrder = 'nom_pays';
+  $wishedOrder = 'edition';
   if (!empty($_POST['packorder'])){
     $wishedOrder = htmlentities($_POST['packorder']);
   }
