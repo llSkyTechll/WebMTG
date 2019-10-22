@@ -15,6 +15,8 @@
 
 <link rel="stylesheet" href="css/include.css">
 
+<script src="https://kit.fontawesome.com/30dce125f3.js" crossorigin="anonymous"></script> <!--lien pour les icons -->
+
 <script type="text/javascript" src="jquery-validation/lib/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="jquery-validation/dist/jquery.validate.min.js"></script>
 <script type="text/javascript" src="jquery-validation/dist/localization/messages_fr.js"></script>
@@ -22,27 +24,20 @@
 
 <body>
 <div class="form-group">
-		  <div class="col-md-4 col-lg-2">   <!--pure-u-1 pure-u-md-1-3 pure-u-lg-1-5 -->
-    	</div>
-        <div class="pure-u-1 pure-u-md-2-3 pure-u-lg-4-5"> <!--pure-u-1 pure-u-md-2-3 pure-u-lg-4-5 -->
-    		<?php require('view_menu.php'); ?>
-        </div>
-          
-    	<div class="pure-u-1 pure-u-md-2-3 pure-u-lg-1-5">
-    	</div>
-        <div class="pure-u-1 pure-u-md-2-3 pure-u-lg-4-5">
-        	<article> 
-            	<H1> <?php echo $titre ?></H1>
-            </article>
-    	</div>   
-    <div class="pure-u-1 pure-u-md-2-3 pure-u-lg-1-5">
-    </div>
-    <div class="pure-u-1 pure-u-md-2-3 pure-u-lg-3-5 form-box"> 
-		<?php echo $contenu ?>   <!-- Élément spécifique -->		
-	</div>
+  <div class="pure-u-1 pure-u-md-2-3 pure-u-lg-4-5"> <!--pure-u-1 pure-u-md-2-3 pure-u-lg-4-5 -->
+    <?php require('view_menu.php'); ?>
+  </div>          
+  <div class="pure-u-1 pure-u-md-2-3 pure-u-lg-4-5"><!-- pure-u-1 pure-u-md-2-3 pure-u-lg-1-5 -->
+    <article> 
+      <H1> <?php echo $titre ?></H1>
+    </article>
+  </div>   
+    <div class="pure-u-1 pure-u-md-2-3 pure-u-lg-3-5 form-box"> <!-- pure-u-1 pure-u-md-2-3 pure-u-lg-3-5 form-box -->
+		  <?php echo $contenu ?>   <!-- Élément spécifique -->		
+	  </div>
 </div>
 
-<script>
+<!-- <script>
 $("#formulaire_validation").validate({
   errorElement : "em",
   onfocusout: function(maFonction) {
@@ -78,6 +73,6 @@ $("#formulaire_validation").validate({
   }	,
  
 });
-</script>
+</script> -->
 </body>
 </html>
