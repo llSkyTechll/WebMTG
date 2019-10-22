@@ -1,21 +1,25 @@
 <?php
-require('model/ManagerPays.php');
+require('model/ManagerSales.php');
 
-function choixPays()
+function packList()
 {
-   $Pays = new ManagerPays;
-   $resultatPays=$Pays->getPays();
-   require('view/ViewPays.php');   
+  $wishedOrder = 'nom_pays';
+  if (!empty($_POST['packorder'])){
+    $wishedOrder = htmlentities($_POST['packorder']);
+  }
+  $packs = new ManagerSales;
+  $resultPacks=$packs->getPacks($wishedOrder);
+  require('view/ViewPays.php');
 }
 
 function ListeProvinces(){
    if (!empty($_POST['pays'])){
       $codePays = htmlentities($_POST['pays']);
-      $NomPays = new ManagerPays;
+      $NomPays = new ManagerSales;
       $resultatNomPays =$NomPays->getNomPays($codePays);
-      $NomProvince = new ManagerPays;
+      $NomProvince = new ManagerSales;
       $resultatProvince =$NomProvince->getNomProvince($codePays);
-      require('view/ViewProvince.php'); 
+      require('view/ViewProvince.php');
    }
    else {
       if (!empty($_COOKIE['pays'])) {
@@ -24,22 +28,22 @@ function ListeProvinces(){
       else {
          $message = "Aucune historique. Faire une recherche au préalable";
       }
-       
-      require('view/ViewHistorique.php'); 
+
+      require('view/ViewHistorique.php');
    }
 }
- 
+
 function inscription(){
-   require('view/ViewInscription.php'); 
+   require('view/ViewInscription.php');
 }
 
 function validation(){
-   require('view/ViewValidation.php'); 
+   require('view/ViewValidation.php');
 }
 function videHistorique(){
-   setcookie("pays", false, time() - 3600); 
-   $Pays = new ManagerPays;
+   setcookie("pays", false, time() - 3600);
+   $Pays = new ManagerSales;
    $resultatPays=$Pays->getPays();
-   require('view/ViewPays.php');  
+   require('view/ViewPays.php');
 }
 ?>

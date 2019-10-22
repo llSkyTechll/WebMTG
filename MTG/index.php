@@ -4,27 +4,25 @@ require('controller/Controllers.php');
 try {
 	if (isset($_GET['action'])) {
 		switch ($_GET['action'] ) {
-			case 'choixPays':
+			case 'accueil':
 				choixPays();
 				break;
-			case 'ListeProvinces':	
+			case 'panier':
 				ListeProvinces();
 				break;
-			case 'videHistorique':	
+			case 'connexion':
 				videHistorique();
 				break;
-			case 'inscription':	
+			case 'inscription':
 				inscription();
 				break;
-			case 'validation':	
-				validation();
-				break;
+
 			default :
-				throw new Exception('Aucune page spécifique demandée');	
+				throw new Exception('Aucune page spécifique demandée');
 		}
-	}	
+	}
 	else {
-		choixPays(); 
+		choixPays();
 	}
 }
 
