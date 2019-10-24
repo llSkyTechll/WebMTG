@@ -11,7 +11,7 @@
 <script type="text/javascript" src="jquery-validation/lib/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="jquery-validation/dist/jquery.validate.min.js"></script>
 <script type="text/javascript" src="jquery-validation/dist/localization/messages_fr.js"></script>
-
+<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </head>
@@ -20,14 +20,14 @@
 <div class="d-flex row">
   <div class="col-md-12 from-group offset-sm-5">
     <?php require('view_menu.php'); ?>
-  </div>          
+  </div>
   <div class="col-md-12 offset-sm-6">
-    <article> 
+    <article>
       <H1> <?php echo $titre ?></H1>
     </article>
-  </div>   
-    <div class="col-md-12 form-group offset-sm-6"> 
-		  <?php echo $contenu ?>  		
+  </div>
+    <div class="col-md-12 form-group offset-sm-6">
+		  <?php echo $contenu ?>
 	  </div>
 </div>
 
@@ -54,18 +54,18 @@ $("#formulaire_validation").validate({
 	  required : true,
       equalTo:"#motpasse_membre"
 	},
-	
+
   },
   messages:  {
-    email_membre : { 
+    email_membre : {
 		 required : 'Un address email est obligatoire',
 		 email : 'Une address email doit être valide',
         },
-        motpasse_membre : { 
+        motpasse_membre : {
 			required : 'Un mot de passe est obligatoire',
         },
   }	,
- 
+
 });
 </script> -->
 </body>
