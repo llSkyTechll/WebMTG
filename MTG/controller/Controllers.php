@@ -1,49 +1,46 @@
 <?php
-require('model/ManagerSales.php');
+  require('model/ManagerSales.php');
+  require('model/ManagerUsers.php');
 
-function packList()
-{
-  $wishedOrder = 'edition';
-  if (!empty($_POST['packorder'])){
-    $wishedOrder = htmlentities($_POST['packorder']);
+  function PackList()
+  {
+    $wishedOrder = 'edition';
+    if (!empty($_POST['packorder'])){
+      $wishedOrder = htmlentities($_POST['packorder']);
+    }
+    $packs = new ManagerSales;
+    $resultPacks=$packs->GetPacks($wishedOrder);
+    require('view/viewAccueil.php');
   }
-  $packs = new ManagerSales;
-  $resultPacks=$packs->getPacks($wishedOrder);
-  require('view/viewAccueil.php');
-}
 
-function ListeProvinces(){
-   if (!empty($_POST['pays'])){
-      $codePays = htmlentities($_POST['pays']);
-      $NomPays = new ManagerSales;
-      $resultatNomPays =$NomPays->getNomPays($codePays);
-      $NomProvince = new ManagerSales;
-      $resultatProvince =$NomProvince->getNomProvince($codePays);
-      require('view/ViewProvince.php');
-   }
-   else {
-      if (!empty($_COOKIE['pays'])) {
-         $message = "Dernière Recherche : ".$_COOKIE['pays'];
+  function UserInscription(){
+    $firstname = 'test';
+    $lastname = 'test2';
+    $email    = 'test3@hotmail.com';
+    $password = 'test4';
+    $user = new ManagerUsers;
+    $resultPacks = $user->CreateUser($firstname,$lastname, $email, $password);
+    require('view/viewAccueil.php');
+  }
+
+  function ValiderInformationInscription(){
+    if (!empty($_POST['email'])){
+      $userEmail = new ManagerUsers;
+      $resultEmail = $userEmail->GetEmails(htmlentities($_POST['email']));
+      if (feof($resultEmail)){ // Si les infos correspondent...
+        echo "email_inexistant";
+      }else{
+        echo "email_existant";
       }
-      else {
-         $message = "Aucune historique. Faire une recherche au préalable";
-      }
+    }
+    require('view/viewAccueil.php');
+  }
 
-      require('view/ViewHistorique.php');
-   }
-}
+  function inscription(){
+     require('view/ViewInscription.php');
+  }
 
-function inscription(){
-   require('view/ViewInscription.php');
-}
-
-function validation(){
-   require('view/ViewValidation.php');
-}
-function videHistorique(){
-   setcookie("pays", false, time() - 3600);
-   $Pays = new ManagerSales;
-   $resultatPays=$Pays->getPays();
-   require('view/ViewPays.php');
-}
+  function validation(){
+     require('view/ViewValidation.php');
+  }
 ?>
