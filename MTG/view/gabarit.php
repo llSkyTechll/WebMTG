@@ -30,15 +30,19 @@
 		  <?php echo $contenu ?>
 	  </div>
 </div>
-
-<!-- <script>
+<!-- 
+<script>
 $("#formulaire_validation").validate({
   errorElement : "em",
   onfocusout: function(maFonction) {
               this.element(maFonction);
             },
   rules : {
-    Pseudo : {
+    Nom : {
+	  required : true,
+	  maxlength: 5,
+    },
+    Prenom : {
 	  required : true,
 	  maxlength: 5,
     },
@@ -67,6 +71,6 @@ $("#formulaire_validation").validate({
   }	,
 
 });
-</script> -->
+</script>  -->
 </body>
 </html>
