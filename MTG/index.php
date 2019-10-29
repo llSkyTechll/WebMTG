@@ -5,16 +5,22 @@ try {
 	if (isset($_GET['action'])) {
 		switch ($_GET['action'] ) {
 			case 'accueil':
-				packList();
+				UserInscription();
 				break;
 			case 'panier':
 				ListeProvinces();
 				break;
 			case 'connexion':
-				videHistorique();
+				Connexion();
 				break;
 			case 'inscription':
-				inscription();
+				Inscription();
+				break;
+			case 'historique':
+
+				break;
+			case 'validationInscription':
+				ValiderInformationInscription();
 				break;
 
 			default :

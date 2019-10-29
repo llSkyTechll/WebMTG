@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 
 
-<form id="formulaire_validation" class="pure-form pure-form-aligned" action="index.php?action=validation" method="post" >	 
+<form id="formulaire_validation" class="pure-form pure-form-aligned" action="index.php?action=validationInscription" method="post" >
     <fieldset>
         <div class="pure-control-group">
             <label for="Nom">Nom</label>
@@ -23,13 +23,13 @@
         </div>
         <div class="pure-control-group">
             <label for="confirmation">Confirmation de mot de passe</label>
-            <input type="password" name="confirmation" id="confirmation"  /> 
+            <input type="password" name="confirmation" id="confirmation"  />
         </div>
-        <div class="pure-controls">		 
-            <input class="pure-button pure-button-primary" type="submit" value="s'inscrire"/>  
+        <div class="pure-controls">
+            <input class="pure-button pure-button-primary" type="submit" value="s'inscrire"/>
         </div>
-    </fieldset>			
-</form>	
+    </fieldset>
+</form>
 
 <?php $contenu = ob_get_clean(); ?>
 
