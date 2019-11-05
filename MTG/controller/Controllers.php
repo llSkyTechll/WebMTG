@@ -14,13 +14,21 @@
   }
 
   function UserInscription(){
-    $firstname   = htmlentities($_POST['firstname']);
-    $lastname    = htmlentities($_POST['lastname']);
+    $firstname   = htmlentities($_POST['firstName']);
+    $lastname    = htmlentities($_POST['lastName']);
     $email       = htmlentities($_POST['email']);
     $password    = htmlentities($_POST['password']);
     $user        = new ManagerUsers;
-    $resultPacks = $user->CreateUser($firstname,$lastname, $email, $password);
+    $user->CreateUser($firstname,$lastname, $email, $password);
+    UserConnexion();
     require('view/viewAccueil.php');
+  }
+
+  function UserConnexion(){
+    $email = htmlentities($_POST['email']);
+    $password = htmlentities($_POST['password']);
+    $user = new ManagerUsers;
+    $userInfo = $user->GetUserInfo($email, $password);
   }
 
   function ValiderInformationInscription(){
