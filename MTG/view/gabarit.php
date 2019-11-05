@@ -1,5 +1,5 @@
 <!doctype html>
-<html>  
+<html>
   <head>
   <meta charset="utf-8">
     <title><?php echo $titre ?></title>
@@ -13,7 +13,6 @@
     <script type="text/javascript" src="jquery-validation/dist/localization/messages_fr.js"></script>
     <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
   </head>
 
   <body>

@@ -5,7 +5,7 @@ try {
 	if (isset($_GET['action'])) {
 		switch ($_GET['action'] ) {
 			case 'accueil':
-				UserInscription();
+
 				break;
 			case 'panier':
 				ListeProvinces();

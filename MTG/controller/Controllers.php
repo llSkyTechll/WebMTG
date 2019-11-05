@@ -14,11 +14,11 @@
   }
 
   function UserInscription(){
-    $firstname = 'test';
-    $lastname = 'test2';
-    $email    = 'test3@hotmail.com';
-    $password = 'test4';
-    $user = new ManagerUsers;
+    $firstname   = htmlentities($_POST['firstname']);
+    $lastname    = htmlentities($_POST['lastname']);
+    $email       = htmlentities($_POST['email']);
+    $password    = htmlentities($_POST['password']);
+    $user        = new ManagerUsers;
     $resultPacks = $user->CreateUser($firstname,$lastname, $email, $password);
     require('view/viewAccueil.php');
   }
@@ -27,20 +27,20 @@
     if (!empty($_POST['email'])){
       $userEmail = new ManagerUsers;
       $resultEmail = $userEmail->GetEmails(htmlentities($_POST['email']));
-      if (feof($resultEmail)){ // Si les infos correspondent...
-        echo "email_inexistant";
+      if (empty($resultEmail->fetch())){
+        UserInscription();
       }else{
-        echo "email_existant";
+        echo "<script type=\"text/javascript\">alert('Email déjà utilisé.');</script>";
+        Inscription(); //Possibilité d'amélioration avec AJAX
       }
     }
-    require('view/viewAccueil.php');
   }
 
-  function inscription(){
-     require('view/ViewInscription.php');
+  function Inscription(){
+     require('view/viewInscription.php');
   }
 
-  function validation(){
-     require('view/ViewValidation.php');
+  function Validation(){
+     require('view/viewValidation.php');
   }
 ?>
