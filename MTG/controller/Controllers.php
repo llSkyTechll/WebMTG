@@ -14,33 +14,41 @@
   }
 
   function UserInscription(){
-    $firstname = 'test';
-    $lastname = 'test2';
-    $email    = 'test3@hotmail.com';
-    $password = 'test4';
-    $user = new ManagerUsers;
-    $resultPacks = $user->CreateUser($firstname,$lastname, $email, $password);
+    $firstname   = htmlentities($_POST['firstName']);
+    $lastname    = htmlentities($_POST['lastName']);
+    $email       = htmlentities($_POST['email']);
+    $password    = htmlentities($_POST['password']);
+    $user        = new ManagerUsers;
+    $user->CreateUser($firstname,$lastname, $email, $password);
+    UserConnexion();
     require('view/viewAccueil.php');
+  }
+
+  function UserConnexion(){
+    $email = htmlentities($_POST['email']);
+    $password = htmlentities($_POST['password']);
+    $user = new ManagerUsers;
+    $userInfo = $user->GetUserInfo($email, $password);
   }
 
   function ValiderInformationInscription(){
     if (!empty($_POST['email'])){
       $userEmail = new ManagerUsers;
       $resultEmail = $userEmail->GetEmails(htmlentities($_POST['email']));
-      if (feof($resultEmail)){ // Si les infos correspondent...
-        echo "email_inexistant";
+      if (empty($resultEmail->fetch())){
+        UserInscription();
       }else{
-        echo "email_existant";
+        echo "<script type=\"text/javascript\">alert('Email déjà utilisé.');</script>";
+        Inscription(); //Possibilité d'amélioration avec AJAX
       }
     }
-    require('view/viewAccueil.php');
   }
 
-  function inscription(){
-     require('view/ViewInscription.php');
+  function Inscription(){
+     require('view/viewInscription.php');
   }
 
-  function validation(){
-     require('view/ViewValidation.php');
+  function Validation(){
+     require('view/viewValidation.php');
   }
 ?>
