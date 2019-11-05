@@ -8,10 +8,11 @@
 
     <script src="https://kit.fontawesome.com/30dce125f3.js" crossorigin="anonymous"></script> <!--lien pour les icons -->
 
+    <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="jquery-validation/lib/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="jquery-validation/dist/jquery.validate.min.js"></script>
     <script type="text/javascript" src="jquery-validation/dist/localization/messages_fr.js"></script>
-    <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+   
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
 
@@ -40,58 +41,58 @@ $("#formulaire_validation").validate({
                 minlength: 3,
                 regexp_firstName: true
             }, 
-            // lastName:{
-            //     required: true,
-            //     maxlength: 30,
-            //     minlength: 3,
-            //     regexp_lastName: true,
-            // }, 
-            // email:{
-            //     required: true,
-            //     maxlength: 100,
-            //     regexp_email: true,
-            // },
-            // password:{
-            //     required: true,
-            //     maxlength: 50,
-            //     minlength: 5,
-            //     regexp_password: true,
-            //     }, 
-            // password_validation:{
-            //     required: true,
-            //     equalTo: "#password",
-            //     }, 
+            lastName:{
+                required: true,
+                maxlength: 30,
+                minlength: 3,
+                regexp_lastName: true,
+            }, 
+            email:{
+                required: true,
+                maxlength: 100,
+                regexp_email: true,
+            },
+            password:{
+                required: true,
+                maxlength: 50,
+                minlength: 5,
+                regexp_password: true,
+                }, 
+            password_validation:{
+                required: true,
+                equalTo: "#password",
+                }, 
             },	    	 
-        // messages:{	
-        //         // firstName:
-        //         // {
-        //         //     required: 'un prénom est obligatoire',
-        //         //     maxlength: 'la longueur maximum est de 30 characteres',
-        //         //     minlength: 'la longueur minimum est de 3 characteres',	
-        //         // },
-        //         // lastName:
-        //         // {
-        //         //     required: 'un nom de famille est obligatoire',
-        //         //     maxlength: 'la longueur maximum est de 30 characteres',	
-        //         //     minlength: 'la longueur minimum est de 3 characteres',	
-        //         // },
-        //         // email:
-        //         // {
-        //         //     required: 'un email est obligatoire',
-        //         //     maxlength: 'la longueur maximum est de 100 characteres',	
-        //         // },
-        //         // password:
-        //         // {
-        //         //     required: 'un mot de passe est obligatoire'	,                    
-        //         //     maxlength: 'la longueur maximum est de 50 characteres',	
-        //         //     minlength: 'la longueur minimum est de 5 characteres'
-        //         // },
-        //         // password_validation:
-        //         // {
-        //         //     required: 'un mot de passe est obligatoire'	,
-        //         //     equalTo : 'doit être pareil au mot de passe',
-        //         // },
-        //     } 
+        messages:{	
+                firstName:
+                {
+                    required: 'un prénom est obligatoire',
+                    maxlength: 'la longueur maximum est de 30 characteres',
+                    minlength: 'la longueur minimum est de 3 characteres',	
+                },
+                lastName:
+                {
+                    required: 'un nom de famille est obligatoire',
+                    maxlength: 'la longueur maximum est de 30 characteres',	
+                    minlength: 'la longueur minimum est de 3 characteres',	
+                },
+                email:
+                {
+                    required: 'un email est obligatoire',
+                    maxlength: 'la longueur maximum est de 100 characteres',	
+                },
+                password:
+                {
+                    required: 'un mot de passe est obligatoire'	,                    
+                    maxlength: 'la longueur maximum est de 50 characteres',	
+                    minlength: 'la longueur minimum est de 5 characteres'
+                },
+                password_validation:
+                {
+                    required: 'un mot de passe est obligatoire'	,
+                    equalTo : 'doit être pareil au mot de passe',
+                },
+            } 
     });
 
 
