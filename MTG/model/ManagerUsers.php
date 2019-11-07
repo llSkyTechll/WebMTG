@@ -23,7 +23,7 @@ class ManagerUsers extends Connexion // hérite de la classe connexion
    public function GetUserInfo($email, $password){
      $sql = 'SELECT custid, firstname, lastname, email
              FROM tbl_customers
-             WHERE email = ".$email."'
+             WHERE email = ".$email."';
    }
 }
 
