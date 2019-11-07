@@ -5,7 +5,7 @@ require_once("model/Connexion.php"); // on pourra utiliser dbConnexion
 class ManagerUsers extends Connexion // hérite de la classe connexion
 {
    // Renvoie la liste des membres triés par nom dans l'ordre alphabétique
-   public function createUser($firstname, $lastname, $email, $password) {
+   public function CreateUser($firstname, $lastname, $email, $password) {
      $sql = 'INSERT INTO tbl_customers (firstname, lastname, email, password)
              VALUES ("'.$firstname.'", "'.$lastname.'", "'.$email.'", "'.$password.'")';
 	   $user = self::getConnexion()->prepare($sql);
@@ -23,7 +23,10 @@ class ManagerUsers extends Connexion // hérite de la classe connexion
    public function GetUserInfo($email, $password){
      $sql = 'SELECT custid, firstname, lastname, email
              FROM tbl_customers
-             WHERE email = ".$email."';
+             WHERE email = "'.$email.'" AND  password = "'.$password.'"';
+     $userInfo = self::getConnexion()->prepare($sql);
+     $userInfo->execute();
+     return $userInfo;
    }
 }
 

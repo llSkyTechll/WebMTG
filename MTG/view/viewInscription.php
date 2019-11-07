@@ -6,20 +6,20 @@
 <form id="formulaire_validation" class="pure-form pure-form-aligned" action="index.php?action=validationInscription" method="post" >
     <fieldset>
         <div class="pure-control-group">
-            <label for="firstName">Nom</label>
-            <input type="text" name="firstName" id="firstName" />  
-        </div> 
+            <label for="fistName">Nom</label>
+            <input type="text" name="firstName" id="fistName" />
+        </div>
         <div class="pure-control-group">
             <label for="lastName">Prenom</label>
-            <input type="text" name="lastName" id="lastName" />  
-        </div> 
-        <div class="pure-control-group">  
+            <input type="text" name="lastName" id="lastName" />
+        </div>
+        <div class="pure-control-group">
             <label for="email">Email</label>
-            <input type="text" name="email" id="email"  /> 
+            <input type="text" name="email" id="email"  />
         </div>
         <div class="pure-control-group">
             <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password"  /> 
+            <input type="password" name="password" id="password"  />
         </div>
         <div class="pure-control-group">
             <label for="password_validation">Confirmation de mot de passe</label>

@@ -29,6 +29,16 @@
     $password = htmlentities($_POST['password']);
     $user = new ManagerUsers;
     $userInfo = $user->GetUserInfo($email, $password);
+    if (empty($result = $userInfo->fetch())) {
+      echo "<script type=\"text/javascript\">alert('Email et/ou mot de passe incorrect.');</script>";
+      require('view/viewConnexion.php');
+    }else {
+      $_SESSION['firstname'] = $result['firstname'];
+      $_SESSION['lastname']  = $result['lastname'];
+      $_SESSION['email']     = $result['email'];
+      $_SESSION['custid']    = $result['custid'];
+      require('view/Accueil.php');
+    }
   }
 
   function ValiderInformationInscription(){
@@ -37,11 +47,16 @@
       $resultEmail = $userEmail->GetEmails(htmlentities($_POST['email']));
       if (empty($resultEmail->fetch())){
         UserInscription();
-      }else{
+      }else {
         echo "<script type=\"text/javascript\">alert('Email déjà utilisé.');</script>";
         Inscription(); //Possibilité d'amélioration avec AJAX
       }
     }
+  }
+
+  function Disconnect(){
+    session_destroy();
+    require('view/viewAccueil.php');
   }
 
   function Inscription(){

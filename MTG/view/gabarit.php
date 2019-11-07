@@ -12,7 +12,7 @@
     <script type="text/javascript" src="jquery-validation/lib/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="jquery-validation/dist/jquery.validate.min.js"></script>
     <script type="text/javascript" src="jquery-validation/dist/localization/messages_fr.js"></script>
-   
+
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
 
