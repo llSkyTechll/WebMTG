@@ -5,13 +5,13 @@ try {
 	if (isset($_GET['action'])) {
 		switch ($_GET['action'] ) {
 			case 'accueil':
-
+				Accueil();
 				break;
 			case 'panier':
 				ListeProvinces();
 				break;
 			case 'connexion':
-				UserConnexion();
+				Connexion();
 				break;
 			case 'inscription':
 				Inscription();
@@ -22,7 +22,9 @@ try {
 			case 'validationInscription':
 				ValiderInformationInscription();
 				break;
-
+			case 'userConnexion':
+				UserConnexion();
+				break;
 			default :
 				throw new Exception('Aucune page spécifique demandée');
 		}

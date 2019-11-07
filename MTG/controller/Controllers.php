@@ -37,7 +37,7 @@
       $_SESSION['lastname']  = $result['lastname'];
       $_SESSION['email']     = $result['email'];
       $_SESSION['custid']    = $result['custid'];
-      require('view/Accueil.php');
+      require('view/viewAccueil.php');
     }
   }
 
@@ -59,8 +59,16 @@
     require('view/viewAccueil.php');
   }
 
+  function Connexion(){
+    require('view/viewConnexion.php');
+  }
+
   function Inscription(){
      require('view/viewInscription.php');
+  }
+
+  function Accueil(){
+    require('view/viewAccueil.php');
   }
 
   function Validation(){
