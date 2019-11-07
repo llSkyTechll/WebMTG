@@ -12,7 +12,7 @@
     <script type="text/javascript" src="jquery-validation/lib/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="jquery-validation/dist/jquery.validate.min.js"></script>
     <script type="text/javascript" src="jquery-validation/dist/localization/messages_fr.js"></script>
-   
+
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
 
@@ -31,22 +31,22 @@
         </div>
     </div>
   </body>
-  
+
 <script>
-$("#formulaire_validation").validate({ 
-        rules: { 
+/*$("#formulaire_validation").validate({
+        rules: {
             firstName:{
                 required: true,
                 maxlength: 30,
                 minlength: 3,
                 regexp_firstName: true
-            }, 
+            },
             lastName:{
                 required: true,
                 maxlength: 30,
                 minlength: 3,
                 regexp_lastName: true,
-            }, 
+            },
             email:{
                 required: true,
                 maxlength: 100,
@@ -57,34 +57,34 @@ $("#formulaire_validation").validate({
                 maxlength: 50,
                 minlength: 5,
                 regexp_password: true,
-                }, 
+                },
             password_validation:{
                 required: true,
                 equalTo: "#password",
-                }, 
-            },	    	 
-        messages:{	
+                },
+            },
+        messages:{
                 firstName:
                 {
                     required: 'un prénom est obligatoire',
                     maxlength: 'la longueur maximum est de 30 characteres',
-                    minlength: 'la longueur minimum est de 3 characteres',	
+                    minlength: 'la longueur minimum est de 3 characteres',
                 },
                 lastName:
                 {
                     required: 'un nom de famille est obligatoire',
-                    maxlength: 'la longueur maximum est de 30 characteres',	
-                    minlength: 'la longueur minimum est de 3 characteres',	
+                    maxlength: 'la longueur maximum est de 30 characteres',
+                    minlength: 'la longueur minimum est de 3 characteres',
                 },
                 email:
                 {
                     required: 'un email est obligatoire',
-                    maxlength: 'la longueur maximum est de 100 characteres',	
+                    maxlength: 'la longueur maximum est de 100 characteres',
                 },
                 password:
                 {
-                    required: 'un mot de passe est obligatoire'	,                    
-                    maxlength: 'la longueur maximum est de 50 characteres',	
+                    required: 'un mot de passe est obligatoire'	,
+                    maxlength: 'la longueur maximum est de 50 characteres',
                     minlength: 'la longueur minimum est de 5 characteres'
                 },
                 password_validation:
@@ -92,28 +92,28 @@ $("#formulaire_validation").validate({
                     required: 'un mot de passe est obligatoire'	,
                     equalTo : 'doit être pareil au mot de passe',
                 },
-            } 
+            }
     });
 
 
-    $.validator.addMethod("regexp_firstName", 
+    $.validator.addMethod("regexp_firstName",
     function (value, element){
     return this.optional(element) || /[a-zA-Z]{30}/.test(value);
     }, 'exemple de format Roy');
-    $.validator.addMethod("regexp_lastName", 
+    $.validator.addMethod("regexp_lastName",
     function (value, element){
     return this.optional(element) || /[a-zA-Z]{30}/.test(value);
     }, 'exemple de format Luc');
-    $.validator.addMethod("regexp_password", 
+    $.validator.addMethod("regexp_password",
     function (value, element){
-    return this.optional(element) || /.{50}/.test(value);
+    return this.optional(element) || /\.+/.test(value);
     }, 'exemple de format xxxx12345678');
-    $.validator.addMethod("regexp_email", 
+    $.validator.addMethod("regexp_email",
     function (value, element){
     return this.optional(element) || /^[\w\.-]+@[a-zA-Z0-9\.-]{2,}\.[a-zA-Z0-9]{2,6}$/.test(value);
     }, 'exemple de format abc@gmail.com');
 
-
-</script>	
+*/
+</script>
 
 </html>

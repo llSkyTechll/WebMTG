@@ -11,13 +11,13 @@ try {
 				ListeProvinces();
 				break;
 			case 'connexion':
-				Connexion();
+				UserConnexion();
 				break;
 			case 'inscription':
 				Inscription();
 				break;
 			case 'historique':
-
+				UserConnexion();
 				break;
 			case 'validationInscription':
 				ValiderInformationInscription();
