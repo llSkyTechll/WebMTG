@@ -25,6 +25,9 @@ try {
 			case 'userConnexion':
 				UserConnexion();
 				break;
+			case 'article':
+				Article();
+				break;
 			default :
 				throw new Exception('Aucune page spécifique demandée');
 		}

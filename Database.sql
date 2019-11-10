@@ -146,7 +146,7 @@ CREATE TABLE `tbl_packs` (
   `edition` varchar(100) NOT NULL DEFAULT '',
   `price` decimal(18,2) NOT NULL DEFAULT '0.00',
   `releasedate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `picture` varchar(15) NOT NULL DEFAULT '',
+  `picture` varchar(100) NOT NULL DEFAULT '',
   `description` varchar(5000) NOT NULL DEFAULT '',
   PRIMARY KEY (`packid`),
   UNIQUE KEY `packid_UNIQUE` (`packid`)
@@ -159,7 +159,11 @@ CREATE TABLE `tbl_packs` (
 
 LOCK TABLES `tbl_packs` WRITE;
 /*!40000 ALTER TABLE `tbl_packs` DISABLE KEYS */;
-INSERT INTO `tbl_packs` VALUES (1,'Gatecrash',5.25,'2019-10-20 15:54:55','Gatecrash.jpg','Dans le bloc Ravnica'),(2,'Return To Ravnica',5.50,'2019-10-20 15:54:55','RTR.jpg','Dans le bloc Ravnica');
+INSERT INTO `tbl_packs` VALUES (1,'Gatecrash',5.25,'2019-10-20 15:54:55','/WebMTG/Images/Gatecrash.jpg','Dans le bloc Ravnica'),
+								(2,'Return To Ravnica',5.50,'2019-10-20 15:54:55','/WebMTG/Images/RTR.jpg','Dans le bloc Ravnica'),
+                                (3,'Iconic Masters',5.25,'2019-10-20 15:54:55','/WebMTG/Images/IconicMasters.png','Dans le bloc Ravnica'),
+                                (4,'Ixalan',5.25,'2019-10-20 15:54:55','/WebMTG/Images/Ixalan.jpg','Dans le bloc Ravnica'),
+                                (5,'Kaladesh',5.25,'2019-10-20 15:54:55','/WebMTG/Images/Kaladesh.jpg','Dans le bloc Ravnica');
 /*!40000 ALTER TABLE `tbl_packs` ENABLE KEYS */;
 UNLOCK TABLES;
 
