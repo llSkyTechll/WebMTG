@@ -70,7 +70,6 @@
   }
 
   function Accueil(){
-    
     // echo "<script type=\"text/javascript\">alert('Email et/ou mot de passe incorrect.');</script>";
     require('view/viewAccueil.php');
   }
