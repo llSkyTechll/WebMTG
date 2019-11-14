@@ -84,6 +84,7 @@
 
   function Panier(){
     $panier = new ManagerOrders;
+    $custid = $_SESSION['custid'];
     $resultPanier = $panier->GetCart($_SESSION['custid']);
     require('view/viewPanier.php');
   }
