@@ -8,7 +8,7 @@ try {
 				Accueil();
 				break;
 			case 'panier':
-				ListeProvinces();
+				Panier();
 				break;
 			case 'connexion':
 				Connexion();

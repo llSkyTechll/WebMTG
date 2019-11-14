@@ -1,6 +1,7 @@
 <?php
   require('model/ManagerSales.php');
   require('model/ManagerUsers.php');
+  require('model/ManagerOrders.php');
 
   function PackList()
   {
@@ -71,11 +72,19 @@
     // echo "<script type=\"text/javascript\">alert('Email et/ou mot de passe incorrect.');</script>";
     require('view/viewAccueil.php');
   }
+
   function Article(){
     // echo "<script type=\"text/javascript\">alert('Email et/ou mot de passe incorrect.');</script>";
     require('view/viewArticle.php');
   }
+
   function Validation(){
      require('view/viewValidation.php');
+  }
+
+  function Panier(){
+    $panier = new ManagerOrders;
+    $resultPanier = $panier->GetCart($_SESSION['custid']);
+    require('view/viewPanier.php');
   }
 ?>
