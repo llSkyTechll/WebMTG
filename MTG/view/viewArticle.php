@@ -1,19 +1,21 @@
-<?php $titre = 'Pays'; ?>
+<?php $titre = 'Articles'; ?>
 
 <?php ob_start(); ?>
 
 <div class="pure-control-group">
-<form class="pure-form pure-form-aligned" action="index.php?action=accueil" method="post" >
 
 <?php while ($enregistrement=$resultPacks->fetch())
             { ?>
-                <div>
-								<img src="<?php echo $enregistrement['picture']; ?>" alt="<?php echo $enregistrement['edition']; ?>">
+                <div class = "form-group"> 
+										<img src="<?php echo $enregistrement['picture']; ?>" alt="<?php echo $enregistrement['edition']; ?>">
+										<button type="button" class="btn btn-primary" value="<?php echo $enregistrement['packid']; ?>">Ajouter au panier</button>
 								</div>
 								
         		<?php }
         		$resultPacks->closeCursor(); ?>
+</div>
 
+<!--<form class="pure-form pure-form-aligned" action="index.php?action=accueil" method="post" >
 	 <fieldset>  
         <div class="pure-control-group">
 					<select name="packorder" onchange="submit()">
@@ -33,10 +35,9 @@
         		$resultPacks->closeCursor(); ?>
 					</select>
         </div>
-    </fieldset> 
+    </fieldset>  
 
-		 <img src="/WebMTG/Images/Gatecrash.jpg" alt="Gatecrash">
-</form>
+</form>-->
 <?php $contenu = ob_get_clean(); ?>
 
 <?php require 'gabarit.php'; ?>
