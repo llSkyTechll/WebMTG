@@ -70,19 +70,17 @@
   }
 
   function Accueil(){
-    
     // echo "<script type=\"text/javascript\">alert('Email et/ou mot de passe incorrect.');</script>";
     require('view/viewAccueil.php');
   }
 
   function Article(){
-if (!empty($_POST["packorder"])) {
- $pack = new ManagerPictures;
-    $resultPacks = $pack ->GetAllPictures();
-    // echo "<script type=\"text/javascript\">alert('Email et/ou mot de passe incorrect.');</script>";
-    require('view/viewArticle.php');
-}
-   
+    if (!empty($_POST["packorder"])) {
+      $pack = new ManagerPictures;
+      $resultPacks = $pack ->GetAllPictures();
+      // echo "<script type=\"text/javascript\">alert('Email et/ou mot de passe incorrect.');</script>";
+      require('view/viewArticle.php');
+    }
   }
 
   function Validation(){
