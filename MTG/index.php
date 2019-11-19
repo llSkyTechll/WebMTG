@@ -39,10 +39,10 @@ try {
 
 catch (PDOException $e) {
   $msgErreur = $e->getMessage();
-  require 'view/vueErreur.php';
+  require 'view/viewErreur.php';
  }
  catch (Exception $ex) {
   $msgErreur = $ex->getMessage();
-  require 'view/vueErreur.php';
+  require 'view/viewErreur.php';
  }
 ?>

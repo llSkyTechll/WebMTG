@@ -1,11 +1,11 @@
-<?php $titre = 'Pays'; ?>
+<?php $titre = 'Accueil'; ?>
 
 <?php ob_start(); ?>
 
 <div class="pure-control-group">
 <form class="pure-form pure-form-aligned" action="index.php?action=article" method="post" >
 
-	 <fieldset>  
+	 <fieldset>
         <div class="pure-control-group">
 					<select name="packorder" onchange="submit()">
 						<option value="edition">Edition</option>
@@ -14,16 +14,16 @@
 					</select>
 
           <select name="packs" onchange="">
-            <?php while ($enregistrement=$resultPacks->fetch())
+            <?php /*while ($enregistrement=$resultPacks->fetch())
             { ?>
                 <option value="<?php echo $enregistrement['edition']; ?>"><?php echo $enregistrement['edition']; ?></option>
         		<?php }
-        		$resultPacks->closeCursor(); ?>
+        		$resultPacks->closeCursor(); */?>
 					</select>
         </div>
-    </fieldset> 
+    </fieldset>
 
 </form>
 <?php $contenu = ob_get_clean(); ?>
 
-<?php require 'gabarit.php'; ?>
+<?php require ('view/gabarit.php'); ?>

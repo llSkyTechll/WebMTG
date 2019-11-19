@@ -39,6 +39,7 @@
       $_SESSION['lastname']  = $result['lastname'];
       $_SESSION['email']     = $result['email'];
       $_SESSION['custid']    = $result['custid'];
+      echo $_SESSION['custid'];
       require('view/viewAccueil.php');
     }
   }
@@ -75,13 +76,12 @@
   }
 
   function Article(){
-if (!empty($_POST["packorder"])) {
- $pack = new ManagerPictures;
-    $resultPacks = $pack ->GetAllPictures(htmlentities($_POST["packorder"]));
-    // echo "<script type=\"text/javascript\">alert('Email et/ou mot de passe incorrect.');</script>";
-    require('view/viewArticle.php');
-}
-   
+    if (!empty($_POST["packorder"])) {
+      $pack = new ManagerPictures;
+      $resultPacks = $pack ->GetAllPictures(htmlentities($_POST["packorder"]));
+      // echo "<script type=\"text/javascript\">alert('Email et/ou mot de passe incorrect.');</script>";
+      require('view/viewArticle.php');
+    }
   }
 
   function Validation(){
@@ -90,6 +90,7 @@ if (!empty($_POST["packorder"])) {
 
   function Panier(){
     $panier = new ManagerOrders;
+    echo $_SESSION['custid'];
     $custid = $_SESSION['custid'];
     $resultPanier = $panier->GetCart($_SESSION['custid']);
     require('view/viewPanier.php');
