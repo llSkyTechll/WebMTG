@@ -19,7 +19,7 @@
   <body>
     <div class="d-flex row">
       <div class="col-md-12 from-group offset-sm-5">
-        <?php require('view_menu.php'); ?>
+        <?php require('viewMenu.php'); ?>
       </div>
       <div class="col-md-12 offset-sm-6">
         <article>
@@ -31,8 +31,4 @@
         </div>
     </div>
   </body>
-  
-
-
-
 </html>
