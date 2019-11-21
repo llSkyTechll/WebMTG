@@ -70,8 +70,6 @@
     require('view/viewAccueil.php');
   }
 
-  
-
   function Validation(){
      require('view/viewValidation.php');
   }
@@ -79,7 +77,14 @@
   function Panier(){
     $panier = new ManagerOrders;
     $custid = $_SESSION['custid'];
-    $resultPanier = $panier->GetCart($_SESSION['custid']);
+    $resultPanier = $panier->GetCart($custid);
     require('view/viewPanier.php');
+  }
+
+  function Commande(){
+    $commande = new ManagerOrders;
+    $custid = $_SESSION['custid'];
+    $resultOrders = $commande->GetOrders($custid);
+    require('view/viewCommande.php');
   }
 ?>
