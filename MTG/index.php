@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require('controller/Controllers.php');
 
 try {
@@ -25,7 +27,10 @@ try {
 			case 'userConnexion':
 				UserConnexion();
 				break;
-			default :			
+			case 'deconnexion':
+				Deconnexion();
+				break;
+			default :
 				throw new Exception('Aucune page spécifique demandée');
 		}
 	}
