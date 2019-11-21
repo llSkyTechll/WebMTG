@@ -18,15 +18,15 @@
 
   <body>
     <div class="d-flex row">
-      <div class="col-md-12 from-group offset-sm-5">
+      <div class="col-md-12 from-group">
         <?php require('viewMenu.php'); ?>
       </div>
-      <div class="col-md-12 offset-sm-6">
+      <div class="col-md-12">
         <article>
           <H1> <?php echo $titre ?></H1>
         </article>
       </div>
-        <div class="col-md-12 form-group offset-sm-6">
+        <div class="col-md-12 form-group">
           <?php echo $contenu ?>
         </div>
     </div>

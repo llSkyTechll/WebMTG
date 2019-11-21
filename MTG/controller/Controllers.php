@@ -39,7 +39,6 @@
       $_SESSION['lastname']  = $result['lastname'];
       $_SESSION['email']     = $result['email'];
       $_SESSION['custid']    = $result['custid'];
-      echo $_SESSION['custid'];
       require('view/viewAccueil.php');
     }
   }
@@ -57,8 +56,8 @@
     }
   }
 
-  function Disconnect(){
-    session_destroy();
+  function Deconnexion(){
+    $_SESSION = array();
     require('view/viewAccueil.php');
   }
 
@@ -90,7 +89,6 @@
 
   function Panier(){
     $panier = new ManagerOrders;
-    echo $_SESSION['custid'];
     $custid = $_SESSION['custid'];
     $resultPanier = $panier->GetCart($_SESSION['custid']);
     require('view/viewPanier.php');

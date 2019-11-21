@@ -4,18 +4,21 @@
 
 <div class="pure-control-group">
   <form class="pure-form pure-form-aligned" action="index.php?action=accueil" method="post" >
-    <table>
+    <table style="width:100%;" border="1">
       <?php while ($enregistrement=$resultPanier->fetch())
                 { ?>
                     <tr>
-                      <td>
+                      <td width="30%">
                         <img src="<?php echo $enregistrement['picture']; ?>" alt="<?php echo $enregistrement['edition']; ?>">
                       </td>
-                      <td>
+                      <td width="30%">
                         <?php echo $enregistrement['edition'] ?>
                       </td>
-                      <td>
+                      <td width="10%">
                         <?php echo $enregistrement['quantity'] ?>
+                      </td>
+                      <td width="30%">
+                        <input type="button" name="btnRemovePack" value="Retirer l'article"></input>
                       </td>
                     </tr>
 
