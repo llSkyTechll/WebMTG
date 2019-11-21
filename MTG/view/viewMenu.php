@@ -1,8 +1,6 @@
 <div class="container-fluid">
     <ul class="list-group list-group-horizontal">
         <li class="list-group-item"><a href="index.php?action=accueil" class="btn btn-primary">Accueil</a></li>
-        <li class="list-group-item"><a href="index.php?action=Historique" class="btn btn-primary">Historique</a></li>
-        <li class="list-group-item"><a href="index.php?action=panier" class="btn btn-primary">Historique</a></li>
         <li class="list-group-item"><a href="index.php?action=panier" class="btn btn-primary">Panier</a></li>
         <?php if (!empty($_SESSION['custid'])) { ?>
           <li class="list-group-item"><a href="index.php?action=commande" class="btn btn-primary">Commande</a></li>

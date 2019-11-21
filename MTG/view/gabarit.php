@@ -8,7 +8,10 @@
 
     <script src="https://kit.fontawesome.com/30dce125f3.js" crossorigin="anonymous"></script> <!--lien pour les icons -->
 
-    <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+    <!-- <script type="text/javascript" src="jquery-3.4.1.min.js"></script> -->
+    <script <?php echo  $lien_ajax ?>></script>
+
+    
     <script type="text/javascript" src="jquery-validation/lib/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="jquery-validation/dist/jquery.validate.min.js"></script>
     <script type="text/javascript" src="jquery-validation/dist/localization/messages_fr.js"></script>
@@ -30,5 +33,6 @@
           <?php echo $contenu ?>
         </div>
     </div>
+    <script <?php echo $gestion_ajax ?> ></script>
   </body>
 </html>
