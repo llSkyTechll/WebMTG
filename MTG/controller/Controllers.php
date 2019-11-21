@@ -4,17 +4,6 @@
   require('model/ManagerPictures.php');
   require('model/ManagerOrders.php');
 
-  function PackList()
-  {
-    $wishedOrder = 'edition';
-    if (!empty($_POST['packorder'])){
-      $wishedOrder = htmlentities($_POST['packorder']);
-    }
-    $packs = new ManagerSales;
-    $resultPacks=$packs->GetPacks($wishedOrder);
-    require('view/viewAccueil.php');
-  }
-
   function UserInscription(){
     $firstname   = htmlentities($_POST['firstName']);
     $lastname    = htmlentities($_POST['lastName']);
@@ -71,18 +60,18 @@
   }
 
   function Accueil(){
-    // echo "<script type=\"text/javascript\">alert('Email et/ou mot de passe incorrect.');</script>";
+    if (empty($_POST["packorder"])) {
+      $order  = 'edition';
+    }
+    else {
+      $order  = htmlentities($_POST["packorder"]);
+    }
+    $pack = new ManagerPictures;
+      $resultPacks = $pack ->GetAllPictures($order);
     require('view/viewAccueil.php');
   }
 
-  function Article(){
-    if (!empty($_POST["packorder"])) {
-      $pack = new ManagerPictures;
-      $resultPacks = $pack ->GetAllPictures(htmlentities($_POST["packorder"]));
-      // echo "<script type=\"text/javascript\">alert('Email et/ou mot de passe incorrect.');</script>";
-      require('view/viewArticle.php');
-    }
-  }
+  
 
   function Validation(){
      require('view/viewValidation.php');

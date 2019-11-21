@@ -13,7 +13,7 @@ class ManagerPictures extends Connexion // hérite de la classe connexion
 	//    return $user;
   //  }
   public function GetAllPictures($order){
-    $sql = 'SELECT * FROM tbl_packs WHERE packid = "'.$order.'"';
+    $sql = 'SELECT * FROM tbl_packs ORDER BY "'.$order.'"';
     $Pack = self::getConnexion()->prepare($sql);
     $Pack->execute();
     return $Pack;

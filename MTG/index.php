@@ -25,15 +25,12 @@ try {
 			case 'userConnexion':
 				UserConnexion();
 				break;
-			case 'article':
-				Article();
-				break;
-			default :
+			default :			
 				throw new Exception('Aucune page spécifique demandée');
 		}
 	}
 	else {
-		packList();
+		Accueil();
 	}
 }
 
