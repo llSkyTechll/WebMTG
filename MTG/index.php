@@ -30,6 +30,9 @@ try {
 			case 'deconnexion':
 				Deconnexion();
 				break;
+			case 'commande':
+				Commande();
+				break;
 			default :
 				throw new Exception('Aucune page spécifique demandée');
 		}
