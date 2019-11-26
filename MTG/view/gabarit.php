@@ -1,4 +1,12 @@
-<!doctype html>
+<?php
+    if (!empty($_COOKIE['CartCookie'])) {
+        $cartCookie=htmlentities(unserialize($_COOKIE['Visites']));
+    }
+    else {
+      $cartCookie = array();
+    }
+?>
+    <!doctype html>
 <html>
   <head>
   <meta charset="utf-8">
@@ -36,8 +44,8 @@
         </div>
     </div>
     <script <?php echo $gestion_ajax ?> ></script>
-    <script>
+    <!-- <script>
 		  $( "#accordion" ).accordion();
-		</script>
+		</script> -->
   </body>
 </html>

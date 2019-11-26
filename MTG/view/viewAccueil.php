@@ -21,20 +21,18 @@ $gestion_ajax='type="text/javascript" src="gestion_accueil.js"';
 					<?php while ($enregistrement=$resultPacks->fetch())
 			{ ?>
 				<div class = "form-group "> 
-						<img src="<?php echo $enregistrement['picture']; ?>" class="img-fluid" alt="<?php echo $enregistrement['edition']; ?>">
-
-						<button type="button" class="btn btn-light" value="<?php echo $enregistrement['packid']; ?>">Ajouter au panier</button>
+						<img src="<?php echo $enregistrement['picture']; ?>" class="img-fluid image" alt="<?php echo $enregistrement['edition']; ?>">
+						<p> <?php echo $enregistrement['description']; ?></p>
+						<div id="ImagePanier<?php echo $enregistrement['packid']; ?>"></div>
+						<input id="quantity<?php echo $enregistrement['packid']; ?>"type="number" name="quantity" min="1">
+						<!-- <input id="quantity<?php echo $enregistrement['packid']; ?>" type="number" name="quantity" min="1" max="<?php echo $enregistrement['quantityStock']; ?>"> -->
+						<button id="ImagePanier<?php echo $enregistrement['packid']; ?>" type="button" class="btn btn-light" value="<?php echo $enregistrement['packid']; ?>" onclick="AjouterPanier(<?php echo $enregistrement['packid']; ?>)">Ajouter au panier</button>
 				</div>
 				
 			<?php }
 			$resultPacks->closeCursor(); ?>
 			</div>
-
-
 			<?php }?>
-			
- 
-			
 		</fieldset>
 
 	</form>
