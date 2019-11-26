@@ -75,9 +75,14 @@
   }
 
   function Panier(){
+    $custid = 0;
     $panier = new ManagerOrders;
-    $custid = $_SESSION['custid'];
-    $resultPanier = $panier->GetCart($custid);
+    if (!empty($_SESSION['custid'])) {
+      $custid = $_SESSION['custid'];
+      $resultPanier = $panier->GetCart($custid);
+    } else {
+      // code pour les cookies
+    }
     require('view/viewPanier.php');
   }
 
