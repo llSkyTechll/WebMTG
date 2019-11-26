@@ -11,7 +11,9 @@
     <!-- <script type="text/javascript" src="jquery-3.4.1.min.js"></script> -->
     <script <?php echo  $lien_ajax ?>></script>
 
-    
+    <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
+		<script type="text/javascript" src="jquery-ui/external/jquery/jquery.js"></script>
+		<script type="text/javascript" src="jquery-ui/jquery-ui.js"></script>
     <script type="text/javascript" src="jquery-validation/lib/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="jquery-validation/dist/jquery.validate.min.js"></script>
     <script type="text/javascript" src="jquery-validation/dist/localization/messages_fr.js"></script>
@@ -34,5 +36,8 @@
         </div>
     </div>
     <script <?php echo $gestion_ajax ?> ></script>
+    <script>
+		  $( "#accordion" ).accordion();
+		</script>
   </body>
 </html>
