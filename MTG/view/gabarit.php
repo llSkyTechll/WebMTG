@@ -9,16 +9,15 @@
     <script src="https://kit.fontawesome.com/30dce125f3.js" crossorigin="anonymous"></script> <!--lien pour les icons -->
 
     <!-- <script type="text/javascript" src="jquery-3.4.1.min.js"></script> -->
-    <script <?php echo  $lien_ajax ?>></script>
+    <script <?php if (!empty($lien_ajax)) { echo  $lien_ajax; } ?>></script>
 
-    <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
-		<script type="text/javascript" src="jquery-ui/external/jquery/jquery.js"></script>
-		<script type="text/javascript" src="jquery-ui/jquery-ui.js"></script>
     <script type="text/javascript" src="jquery-validation/lib/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="jquery-validation/dist/jquery.validate.min.js"></script>
     <script type="text/javascript" src="jquery-validation/dist/localization/messages_fr.js"></script>
-
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
+		<script src="jquery-ui/external/jquery/jquery.js"></script>
+		<script src="jquery-ui/jquery-ui.js"></script>
   </head>
 
   <body>
@@ -35,7 +34,7 @@
           <?php echo $contenu ?>
         </div>
     </div>
-    <script <?php echo $gestion_ajax ?> ></script>
+    <script <?php if (!empty($gestion_ajax)) {echo $gestion_ajax;} ?> ></script>
     <script>
 		  $( "#accordion" ).accordion();
 		</script>

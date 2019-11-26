@@ -18,9 +18,10 @@
     public function GetOrders($custid){
       $sql = 'SELECT *
               FROM tbl_order
+              INNER JOIN tbl_cartcontent ON tbl_cartcontent.cartid = tbl_order.cartid
+              INNER JOIN tbl_packs ON tbl_packs.packid = tbl_cartcontent.packid
               WHERE custid = '.$custid.'
-              ORDER BY date';
-      echo $sql;
+              ORDER BY date DESC';
       $orders = self::getConnexion()->prepare($sql);
       $orders->execute();
       return $orders;
