@@ -15,22 +15,39 @@ $gestion_ajax='type="text/javascript" src="gestion_accueil.js"';
 					<option value="releasedate">Date de sortie</option>
 					<option value="price">Prix</option>
 				</select>
+				<table>
 			<?php
 				if (!empty($resultPacks))
 				{?>
 					<?php while ($enregistrement=$resultPacks->fetch())
 			{ ?>
-				<div class = "form-group "> 
-						<img src="<?php echo $enregistrement['picture']; ?>" class="img-fluid image" alt="<?php echo $enregistrement['edition']; ?>">
-						<p> <?php echo $enregistrement['description']; ?></p>
-						<div id="ImagePanier<?php echo $enregistrement['packid']; ?>"></div>
-						<input id="quantity<?php echo $enregistrement['packid']; ?>"type="number" name="quantity" min="1">
-						<!-- <input id="quantity<?php echo $enregistrement['packid']; ?>" type="number" name="quantity" min="1" max="<?php echo $enregistrement['quantityStock']; ?>"> -->
-						<button id="ImagePanier<?php echo $enregistrement['packid']; ?>" type="button" class="btn btn-light" value="<?php echo $enregistrement['packid']; ?>" onclick="AjouterPanier(<?php echo $enregistrement['packid']; ?>)">Ajouter au panier</button>
-				</div>
-				
+					<tr>
+						<td>
+							<div class = "form-group ">
+									<img src="<?php echo $enregistrement['picture']; ?>" class="img-fluid image" alt="<?php echo $enregistrement['edition']; ?>">
+									<p align="center"> <?php echo $enregistrement['description']; ?></p>
+									<div id="ImagePanier<?php echo $enregistrement['packid']; ?>"></div>
+									<input id="quantity<?php echo $enregistrement['packid']; ?>"type="number" name="quantity" min="1">
+									<!-- <input id="quantity<?php echo $enregistrement['packid']; ?>" type="number" name="quantity" min="1" max="<?php echo $enregistrement['quantityStock']; ?>"> -->
+									<button id="ImagePanier<?php echo $enregistrement['packid']; ?>" type="button" class="btn btn-light" value="<?php echo $enregistrement['packid']; ?>" onclick="AjouterPanier(<?php echo $enregistrement['packid']; ?>)">Ajouter au panier</button>
+							</div>
+						</td>
+						<td>
+							<?php 	if ($enregistrement=$resultPacks->fetch()) { ?>
+								<div class = "form-group ">
+										<img src="<?php echo $enregistrement['picture']; ?>" class="img-fluid image" alt="<?php echo $enregistrement['edition']; ?>">
+										<p> <?php echo $enregistrement['description']; ?></p>
+										<div id="ImagePanier<?php echo $enregistrement['packid']; ?>"></div>
+										<input id="quantity<?php echo $enregistrement['packid']; ?>"type="number" name="quantity" min="1">
+										<!-- <input id="quantity<?php echo $enregistrement['packid']; ?>" type="number" name="quantity" min="1" max="<?php echo $enregistrement['quantityStock']; ?>"> -->
+										<button id="ImagePanier<?php echo $enregistrement['packid']; ?>" type="button" class="btn btn-light" value="<?php echo $enregistrement['packid']; ?>" onclick="AjouterPanier(<?php echo $enregistrement['packid']; ?>)">Ajouter au panier</button>
+								</div>
+							<?php } ?>
+						</td>
+					</tr>
 			<?php }
 			$resultPacks->closeCursor(); ?>
+			</table>
 			</div>
 			<?php }?>
 		</fieldset>

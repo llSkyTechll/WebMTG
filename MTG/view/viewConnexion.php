@@ -11,7 +11,7 @@
             <label for="email">Email:</label>
           </td>
           <td>
-            <input type="text" name="email" id="email" />
+            <input type="text" tabindex="10" name="email" id="email" />
           </td>
         </tr>
         <tr>
@@ -19,13 +19,13 @@
             <label for="password">Mot de passe:</label>
           </td>
           <td>
-            <input type="text" name="password" id="password" />
+            <input type="text" tabindex="20" name="password" id="password" />
           </td>
         </tr>
         <tr>
         <tr>
           <td colspan="3" align="center" width="100%">
-            <input class="pure-button pure-button-primary" type="submit" value="Se connecter"/>
+            <input class="pure-button pure-button-primary" type="submit" tabindex="30" value="Se connecter"/>
           </td>
         </tr>
       </table>
