@@ -44,7 +44,7 @@
     </div>
     <script <?php if (!empty($gestion_ajax)) {echo $gestion_ajax;} ?> ></script>
     <script>
-		  $( "#accordion" ).accordion();
-		</script> 
+		  $( "#accordion" ).accordion({ heightStyle: "content" });
+		</script>
   </body>
 </html>
