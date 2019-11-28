@@ -1,11 +1,3 @@
-<?php
-    if (!empty($_COOKIE['CartCookie'])) {
-        $cartCookie=htmlentities(unserialize($_COOKIE['Visites']));
-    }
-    else {
-      $cartCookie = array();
-    }
-?>
     <!doctype html>
 <html>
   <head>

@@ -1,31 +1,41 @@
 
+
 function AjouterPanier($idChoix){//À modifier
     //var monid=this.id;
-    // swal('Added','','success');
-     $NumberOfItem=document.getElementById("quantity"+$idChoix).value;
-	 AddCookie($idChoix,$NumberOfItem)
-    $.ajax({  
-        url     : "view/imagePanier.php",
-        type    : "POST",
-        data    : {idChoix:$idChoix},  
+    swal('Ajouter au panier!',"",'success');
+    $NumberOfItem=document.getElementById("quantity"+$idChoix).value;
+    AjouterItemAuPanier($NumberOfItem,$idChoix);
+	$.ajax({   
+        url 	: "view/imagePanier.php",
+        type 	: "POST",
+        data 	: {idChoix:$idChoix},   
         success : function(output){
                     $choix="#ImagePanier"+$idChoix;
                     $($choix).html(output);
                 },
-        error   : function(){
+        error	: function(){
                     $choix="#ImagePanier"+$idChoix;
                     $($choix).html("Une erreur est survenue");
-                }   
+                }	
     });
 }
-function AddCookie($idChoix,$NumberOfItem){
-	$tableau = array();
-	$cartCookie = array();
-	$tableau = array_push($idChoix);
-	$tableau = array_push($NumberOfItem);
-	$tableau_serialize = serialize($tableau);
-	array_push($cartCookie, $tableau_serialize);
-	setcookie("CartCookie", $cartCookie,time()+365*24*3600,null,null,false,true);
-}
+function AjouterItemAuPanier($Quantite,$idProduit) {
+   
 
+    $.ajax({   
+        url 	: "index.php?action=AjouterPanier",
+        type 	: "POST",
+        data 	: {panier:$idProduit,quantite:$Quantite},   
+        success : function(output){
+                    alert(output);
+                    $choix="";
+                    $($choix).html(output);
+                },
+        error	: function(){
+                    $choix="";
+                    $($choix).html("Une erreur est survenue");
+                }	
+    });
+    
+}
 
