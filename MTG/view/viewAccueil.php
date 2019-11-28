@@ -24,7 +24,7 @@ $gestion_ajax='type="text/javascript" src="gestion_accueil.js"';
 					<tr>
 						<td>
 							<div class = "form-group ">
-									<img src="<?php echo $enregistrement['picture']; ?>" class="img-fluid image" alt="<?php echo $enregistrement['edition']; ?>">
+									<img align="center" src="<?php echo $enregistrement['picture']; ?>" class="img-fluid image" alt="<?php echo $enregistrement['edition']; ?>">
 									<p align="center"> <?php echo $enregistrement['description']; ?></p>
 									<div id="ImagePanier<?php echo $enregistrement['packid']; ?>"></div>
 									<input id="quantity<?php echo $enregistrement['packid']; ?>"type="number" name="quantity" min="1">
@@ -35,8 +35,8 @@ $gestion_ajax='type="text/javascript" src="gestion_accueil.js"';
 						<td>
 							<?php 	if ($enregistrement=$resultPacks->fetch()) { ?>
 								<div class = "form-group ">
-										<img src="<?php echo $enregistrement['picture']; ?>" class="img-fluid image" alt="<?php echo $enregistrement['edition']; ?>">
-										<p> <?php echo $enregistrement['description']; ?></p>
+										<img align="center" src="<?php echo $enregistrement['picture']; ?>" class="img-fluid image" alt="<?php echo $enregistrement['edition']; ?>">
+										<p align="center"> <?php echo $enregistrement['description']; ?></p>
 										<div id="ImagePanier<?php echo $enregistrement['packid']; ?>"></div>
 										<input id="quantity<?php echo $enregistrement['packid']; ?>"type="number" name="quantity" min="1">
 										<!-- <input id="quantity<?php echo $enregistrement['packid']; ?>" type="number" name="quantity" min="1" max="<?php echo $enregistrement['quantityStock']; ?>"> -->
@@ -51,7 +51,6 @@ $gestion_ajax='type="text/javascript" src="gestion_accueil.js"';
 			</div>
 			<?php }?>
 		</fieldset>
-
 	</form>
 </div>
 <?php $contenu = ob_get_clean(); ?>

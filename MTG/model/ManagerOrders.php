@@ -9,7 +9,7 @@
               FROM tbl_cartcontent
               INNER JOIN tbl_cart ON tbl_cart.cartid = tbl_cartcontent.cartid
               INNER JOIN tbl_packs ON tbl_packs.packid = tbl_cartcontent.packid
-              WHERE custid = '.$custid;
+              WHERE custid = '.$custid.' AND tbl_cart.isActive = 1';
   	  $cart = self::getConnexion()->prepare($sql);
       $cart->execute();
   	  return $cart;

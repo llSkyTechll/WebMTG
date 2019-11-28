@@ -12,8 +12,8 @@ class ManagerPictures extends Connexion // hérite de la classe connexion
   //    $user->execute();
 	//    return $user;
   //  }
-  public function GetAllPictures($order){
-    $sql = 'SELECT * FROM tbl_packs ORDER BY "'.$order.'"';
+  public function GetAllPictures(){
+    $sql = 'SELECT * FROM tbl_packs ORDER BY price DESC';
     $Pack = self::getConnexion()->prepare($sql);
     $Pack->execute();
     return $Pack;

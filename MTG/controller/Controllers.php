@@ -1,5 +1,4 @@
 <?php
-  require('model/ManagerSales.php');
   require('model/ManagerUsers.php');
   require('model/ManagerPictures.php');
   require('model/ManagerOrders.php');

@@ -27,11 +27,12 @@ DROP TABLE IF EXISTS `tbl_cart`;
 CREATE TABLE `tbl_cart` (
   `cartid` int(10) NOT NULL AUTO_INCREMENT,
   `custid` int(10) NOT NULL DEFAULT '0',
+  `isActive` tinyint(4) NOT NULL,
   PRIMARY KEY (`cartid`),
   UNIQUE KEY `cartid_UNIQUE` (`cartid`),
   KEY `tbl_cartcustomers` (`custid`),
   CONSTRAINT `tbl_cartcustomers` FOREIGN KEY (`custid`) REFERENCES `tbl_customers` (`custid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +41,7 @@ CREATE TABLE `tbl_cart` (
 
 LOCK TABLES `tbl_cart` WRITE;
 /*!40000 ALTER TABLE `tbl_cart` DISABLE KEYS */;
-INSERT INTO `tbl_cart` VALUES (2,1);
+INSERT INTO `tbl_cart` VALUES (2,1,0),(3,1,1);
 /*!40000 ALTER TABLE `tbl_cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,7 +64,7 @@ CREATE TABLE `tbl_cartcontent` (
   KEY `FK_packcartcontent` (`packid`),
   CONSTRAINT `FK_cartcartcontent` FOREIGN KEY (`cartid`) REFERENCES `tbl_cart` (`cartid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_packcartcontent` FOREIGN KEY (`packid`) REFERENCES `tbl_packs` (`packid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +73,7 @@ CREATE TABLE `tbl_cartcontent` (
 
 LOCK TABLES `tbl_cartcontent` WRITE;
 /*!40000 ALTER TABLE `tbl_cartcontent` DISABLE KEYS */;
-INSERT INTO `tbl_cartcontent` VALUES (5,2,2,3,16.50);
+INSERT INTO `tbl_cartcontent` VALUES (5,2,2,3,16.50),(6,2,3,4,20.00),(7,2,1,1,5.00),(10,3,1,5,20.00);
 /*!40000 ALTER TABLE `tbl_cartcontent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,7 +122,7 @@ CREATE TABLE `tbl_order` (
   UNIQUE KEY `orderid_UNIQUE` (`orderid`),
   KEY `FK_cartorder` (`cartid`),
   CONSTRAINT `FK_cartorder` FOREIGN KEY (`cartid`) REFERENCES `tbl_cart` (`cartid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,7 +131,7 @@ CREATE TABLE `tbl_order` (
 
 LOCK TABLES `tbl_order` WRITE;
 /*!40000 ALTER TABLE `tbl_order` DISABLE KEYS */;
-INSERT INTO `tbl_order` VALUES (1,2,1,16.50,'2019-10-20 16:03:03');
+INSERT INTO `tbl_order` VALUES (1,2,1,16.50,'2019-10-20 16:03:03'),(4,3,1,18.00,'2019-11-26 14:12:39');
 /*!40000 ALTER TABLE `tbl_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,7 +151,7 @@ CREATE TABLE `tbl_packs` (
   `description` varchar(5000) NOT NULL DEFAULT '',
   PRIMARY KEY (`packid`),
   UNIQUE KEY `packid_UNIQUE` (`packid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,11 +160,7 @@ CREATE TABLE `tbl_packs` (
 
 LOCK TABLES `tbl_packs` WRITE;
 /*!40000 ALTER TABLE `tbl_packs` DISABLE KEYS */;
-INSERT INTO `tbl_packs` VALUES (1,'Gatecrash',5.25,'2019-10-20 15:54:55','/WebMTG/Images/Gatecrash.jpg','Dans le bloc Ravnica'),
-								(2,'Return To Ravnica',5.50,'2019-10-20 15:54:55','/WebMTG/Images/RTR.jpg','Dans le bloc Ravnica'),
-                                (3,'Iconic Masters',5.25,'2019-10-20 15:54:55','/WebMTG/Images/IconicMasters.jpg','Dans le bloc Ravnica'),
-                                (4,'Ixalan',5.25,'2019-10-20 15:54:55','/WebMTG/Images/Ixalan.jpg','Dans le bloc Ravnica'),
-                                (5,'Kaladesh',5.25,'2019-10-20 15:54:55','/WebMTG/Images/Kaladesh.jpg','Dans le bloc Ravnica');
+INSERT INTO `tbl_packs` VALUES (1,'Gatecrash',5.25,'2019-10-20 15:54:55','/WebMTG/Images/Gatecrash.png','Dans le bloc Ravnica'),(2,'Return To Ravnica',5.50,'2019-10-20 15:54:55','/WebMTG/Images/RTR.png','Dans le bloc Ravnica'),(3,'Iconic Masters',5.25,'2019-10-20 15:54:55','/WebMTG/Images/IconicMasters.png','Dans le bloc Ravnica'),(4,'Ixalan',5.25,'2019-10-20 15:54:55','/WebMTG/Images/Ixalan.png','Dans le bloc Ravnica'),(5,'Kaladesh',5.25,'2019-10-20 15:54:55','/WebMTG/Images/Kaladesh.png','Dans le bloc Ravnica');
 /*!40000 ALTER TABLE `tbl_packs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,4 +181,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-20 16:07:56
+-- Dump completed on 2019-11-28 13:39:46
