@@ -189,14 +189,14 @@ create procedure getAllItemInCart(
 	in listeItem varchar(999)
 )
 begin
-
- set @newListeItem = REPLACE(listeItem,
+set @newListeItem = listeItem;
+ set @newListeItemreplace = REPLACE(listeItem,
         '"',
         '');
 select * from tbl_packs        
 where packid in (@newListeItem);
 end|
 drop procedure getAllItemInCart;
-call getAllItemInCart('"'1','2'"');
+call getAllItemInCart("'1'");
 -- Dump completed on 2019-10-20 16:07:56
 
