@@ -91,4 +91,35 @@
     $resultOrders = $commande->GetOrders($custid);
     require('view/viewCommande.php');
   }
+  function AjouterPanier(){
+    $panier = !Empty($_POST['panier']) ? htmlentities($_POST['panier']):'';
+    $quantite = !Empty($_POST['quantite']) ? htmlentities($_POST['quantite']):'';
+    
+    $panierArray=array();
+    $quantiteArray=array();
+    if(!empty($_COOKIE["panier"]) && !empty($_COOKIE["quantite"]))
+    {
+        $panierArray=unserialize($_COOKIE["panier"]);
+        $quantiteArray=unserialize($_COOKIE["quantite"]);
+    }
+    $HasBeenAdded=false;
+        for ($index=0; $index < count($panierArray) ; $index++) { 
+            if($panierArray[$index]==$panier && !$HasBeenAdded)
+            {               
+                $quantiteArray[$index]+= $quantite;                               
+                $HasBeenAdded=true;
+            }
+        }
+    if (!$HasBeenAdded) {
+        array_push($panierArray,$panier);
+        array_push($quantiteArray,$quantite);
+    }
+    $panierArray_serialize = serialize($panierArray);
+    $quantiteArray_serialize = serialize($quantiteArray);
+    setcookie("panier",$panierArray_serialize,Time()*365*24*3600,null,null,false,true);
+    setcookie("quantite",$quantiteArray_serialize,Time()*365*24*3600,null,null,false,true);
+    echo implode('","',$panierArray);
+    echo"|||";
+    echo implode(":",$quantiteArray);  
+}
 ?>

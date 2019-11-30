@@ -33,6 +33,9 @@ try {
 			case 'commande':
 				Commande();
 				break;
+			case 'AjouterPanier':
+			AjouterPanier();
+				break;
 			default :
 				throw new Exception('Aucune page spécifique demandée');
 		}

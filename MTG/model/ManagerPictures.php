@@ -24,7 +24,13 @@ class ManagerPictures extends Connexion // hérite de la classe connexion
      $Pack->execute();
 	   return $Pack;
    }
-
+   public function getProduitInPanier($listeItem){
+    $sql =  'call getAllInCart(:items)'; 
+    $resultat = self::getConnexion()->prepare($sql);
+    $resultat->bindparam('items',$listeItem,pdo::PARAM_STR,999);
+    $resultat->execute();
+    return $resultat;
+  }
 
   //  public function GetUserInfo($email, $password){
   //    $sql = 'SELECT custid, firstname, lastname, email
