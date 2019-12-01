@@ -14,6 +14,16 @@
       $cart->execute();
   	  return $cart;
     }
+    public function AddToCart($custid) {
+      $sql = 'SELECT cartcontentid, tbl_cartcontent.cartid, tbl_cartcontent.quantity, tbl_packs.packid, edition, picture, description
+              FROM tbl_cartcontent
+              INNER JOIN tbl_cart ON tbl_cart.cartid = tbl_cartcontent.cartid
+              INNER JOIN tbl_packs ON tbl_packs.packid = tbl_cartcontent.packid
+              WHERE custid = '.$custid;
+  	  $cart = self::getConnexion()->prepare($sql);
+      $cart->execute();
+  	  return $cart;
+    }
 
     public function GetOrders($custid){
       $sql = 'SELECT *

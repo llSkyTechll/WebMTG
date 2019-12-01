@@ -185,18 +185,14 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 delimiter |
-create procedure getAllItemInCart(
-	in listeItem varchar(999)
+create procedure GetSpecificPicture(
+	in Item varchar(999)
 )
 begin
-set @newListeItem = listeItem;
- set @newListeItemreplace = REPLACE(listeItem,
-        '"',
-        '');
+
 select * from tbl_packs        
-where packid in (@newListeItem);
+where packid  = Item;
 end|
-drop procedure getAllItemInCart;
-call getAllItemInCart("'1'");
+call GetSpecificPicture("1");
 -- Dump completed on 2019-10-20 16:07:56
 

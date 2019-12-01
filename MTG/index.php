@@ -36,6 +36,12 @@ try {
 			case 'AjouterPanier':
 			AjouterPanier();
 				break;
+			case 'RetirerPanier':
+			RetirerPanier();
+				break;
+			case 'AjouterCommmande':
+			AjouterCommmande();
+				break;
 			default :
 				throw new Exception('Aucune page spécifique demandée');
 		}

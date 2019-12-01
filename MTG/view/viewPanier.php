@@ -1,34 +1,29 @@
-<?php $titre = 'Panier'; ?>
+<?php $titre = 'Panier';
+$lien_ajax='type="text/javascript" src="jquery-3.4.1.min.js"';
+$gestion_ajax='type="text/javascript" src="gestion_accueil.js"';
+?>
 
-<?php ob_start(); ?>
+<?php ob_start() ?>
+
 
 <div class="pure-control-group">
-  <form class="pure-form pure-form-aligned" action="index.php?action=accueil" method="post" >
-    <table style="width:100%;" border="1">
-      <?php while ($enregistrement=$resultPanier->fetch())
-                { ?>
-                    <tr>
-                      <td width="30%">
-                        <img src="<?php echo $enregistrement['picture']; ?>" alt="<?php echo $enregistrement['edition']; ?>">
-                      </td>
-                      <td width="30%">
-                        <?php echo $enregistrement['edition'] ?>
-                      </td>
-                      <td width="10%">
-                        <?php echo $enregistrement['quantity'] ?>
-                      </td>
-                      <td width="30%">
-                        <input type="button" name="btnRemovePack" value="Retirer l'article"></input>
-                      </td>
-                    </tr>
+  <?php 
+  for ($index=0;$index < count($panierAfficheArray);$index++) 
+  {
+  ?> 
 
-                    </div>
-
-                <?php }
-                $resultPanier->closeCursor(); ?>
-    </table>
-    <input type="button" name="btnConvertCart" id="btnConvertCart" value="Passer la commande">
-  </form>
+    <div class = "form-group" id="Group<?php echo $panierAfficheArray[$index]['packid'];?>">
+      <img src="<?php echo $panierAfficheArray[$index]['picture']; ?>" class="img-fluid image" alt="<?php echo $panierAfficheArray[$index]['edition']; ?>">
+      <p > <?php echo $panierAfficheArray[$index]['description']; ?></p>
+      
+      <input id="quantity<?php echo $panierAfficheArray[$index]['packid']; ?>" type="number" name="quantity" min="1"value="<?php echo $quantiteAfficheArray[$index]; ?>" disabled>
+      <button id="ImagePanier<?php echo $panierAfficheArray[$index]['packid']; ?>" type="button" class="btn btn-warning" value="<?php echo $panierAfficheArray[$index]['packid']; ?>" onclick="RetirerPanier(<?php echo $panierAfficheArray[$index]['packid']; ?>)">Retirer du panier</button>
+    </div>
+  <?php
+  }
+  ?>
+    <input type="button" name="btnConvertCart" id="btnConvertCart" value="Passer la commande" onclick="PasserCommande()">
+</div>
 <?php $contenu = ob_get_clean(); ?>
 
 <?php require 'gabarit.php'; ?>
