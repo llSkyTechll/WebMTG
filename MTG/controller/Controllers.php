@@ -46,7 +46,7 @@
 
   function Deconnexion(){
     $_SESSION = array();
-    echo "<script type=\"text/javascript\">swal('Email déjà utilisé.');</script>";
+    echo "<script type=\"text/javascript\">alert('Déconnexion effectuée avec succès');</script>";
     Accueil();
   }
 
@@ -173,7 +173,7 @@ function AjouterCommmande(){
           $AllQuantiteArray=unserialize($_COOKIE["quantite"]);
           $Customer = $panier->CreateOrder($custid);
           $CustomerID =$Customer->fetch();
-          for ($index=0; $index < count($AllPanierArray) ; $index++) { 
+          for ($index=0; $index < count($AllPanierArray) ; $index++) {
             $OrderContent = $panier->AddOrderContent($CustomerID["CustomerId"],$AllPanierArray[$index],$AllQuantiteArray[$index]);
           }
           $updateOrder = $panier->UpdateOrder($CustomerID["CustomerId"]);

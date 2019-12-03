@@ -9,7 +9,7 @@ $gestion_ajax='type="text/javascript" src="js\gestion_accueil.js"';
 	<form class="pure-form pure-form-aligned" action="index.php?action=accueil" method="post" >
 
 		<fieldset>
-			<div class="form-group">				
+			<div class="form-group">
 				<table>
 			<?php
 				if (!empty($resultPacks))
@@ -21,6 +21,7 @@ $gestion_ajax='type="text/javascript" src="js\gestion_accueil.js"';
 							<div class = "form-group ">
 									<img align="center" src="<?php echo $enregistrement['picture']; ?>" class="img-fluid image" alt="<?php echo $enregistrement['edition']; ?>">
 									<p align="center"> <?php echo $enregistrement['description']; ?></p>
+									<p align="center">Prix: <?php echo $enregistrement['price'] ?> $</p>
 									<div id="ImagePanier<?php echo $enregistrement['packid']; ?>"></div>
 									<input id="quantity<?php echo $enregistrement['packid']; ?>" type="number" name="quantity" min="1"value="1">
 									<button id="ImagePanier<?php echo $enregistrement['packid']; ?>" type="button" class="btn btn-light" value="<?php echo $enregistrement['packid']; ?>" onclick="AjouterPanier(<?php echo $enregistrement['packid']; ?>)">Ajouter au panier</button>
@@ -31,6 +32,7 @@ $gestion_ajax='type="text/javascript" src="js\gestion_accueil.js"';
 								<div class = "form-group ">
 										<img align="center" src="<?php echo $enregistrement['picture']; ?>" class="img-fluid image" alt="<?php echo $enregistrement['edition']; ?>">
 										<p align="center"> <?php echo $enregistrement['description']; ?></p>
+										<p align="center">Prix: <?php echo $enregistrement['price'] ?> $</p>
 										<div id="ImagePanier<?php echo $enregistrement['packid']; ?>"></div>
 										<input id="quantity<?php echo $enregistrement['packid']; ?>"type="number" name="quantity" min="1"value="1">
 										<button id="ImagePanier<?php echo $enregistrement['packid']; ?>" type="button" class="btn btn-light" value="<?php echo $enregistrement['packid']; ?>" onclick="AjouterPanier(<?php echo $enregistrement['packid']; ?>)">Ajouter au panier</button>
