@@ -1,6 +1,6 @@
 <?php $titre = 'Accueil';
 $lien_ajax='type="text/javascript" src="jquery-3.4.1.min.js"';
-$gestion_ajax='type="text/javascript" src="gestion_accueil.js"';
+$gestion_ajax='type="text/javascript" src="js\gestion_accueil.js"';
 ?>
 
 <?php ob_start(); ?>
