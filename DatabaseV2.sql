@@ -1,15 +1,13 @@
-CREATE DATABASE  IF NOT EXISTS `bd_mtg` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `bd_mtg`;
--- MySQL dump 10.13  Distrib 5.7.21, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: bd_mtg
+-- Host: localhost    Database: bd_mtg
 -- ------------------------------------------------------
--- Server version	5.7.21
+-- Server version	5.7.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -23,7 +21,7 @@ USE `bd_mtg`;
 
 DROP TABLE IF EXISTS `tbl_customers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_customers` (
   `custid` int(10) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(30) NOT NULL DEFAULT '',
@@ -51,7 +49,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tbl_order`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_order` (
   `orderid` int(10) NOT NULL AUTO_INCREMENT,
   `custid` int(10) NOT NULL DEFAULT '0',
@@ -59,7 +57,8 @@ CREATE TABLE `tbl_order` (
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`orderid`),
   UNIQUE KEY `orderid_UNIQUE` (`orderid`),
-  KEY `FK_ordercustomer_idx` (`custid`)
+  KEY `FK_ordercustomer_idx` (`custid`),
+  CONSTRAINT `FK_customer` FOREIGN KEY (`custid`) REFERENCES `tbl_customers` (`custid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -69,7 +68,6 @@ CREATE TABLE `tbl_order` (
 
 LOCK TABLES `tbl_order` WRITE;
 /*!40000 ALTER TABLE `tbl_order` DISABLE KEYS */;
-INSERT INTO `tbl_order` VALUES (1,1,16.50,'2019-10-20 16:03:03'),(2,1,0.00,'2019-12-02 00:00:00'),(3,3,31.50,'2019-12-02 00:00:00'),(4,1,16.50,'2019-12-02 00:00:00');
 /*!40000 ALTER TABLE `tbl_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,7 +77,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tbl_ordercontent`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_ordercontent` (
   `ordercontentid` int(10) NOT NULL AUTO_INCREMENT,
   `orderid` int(10) NOT NULL DEFAULT '0',
@@ -90,6 +88,7 @@ CREATE TABLE `tbl_ordercontent` (
   UNIQUE KEY `cartcontentid_UNIQUE` (`ordercontentid`),
   KEY `FK_packcartcontent` (`packid`),
   KEY `FK_ordercontent_idx` (`orderid`),
+  CONSTRAINT `FK_order` FOREIGN KEY (`orderid`) REFERENCES `tbl_order` (`orderid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_packcartcontent` FOREIGN KEY (`packid`) REFERENCES `tbl_packs` (`packid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -100,7 +99,6 @@ CREATE TABLE `tbl_ordercontent` (
 
 LOCK TABLES `tbl_ordercontent` WRITE;
 /*!40000 ALTER TABLE `tbl_ordercontent` DISABLE KEYS */;
-INSERT INTO `tbl_ordercontent` VALUES (5,2,2,3,16.50),(6,3,3,3,15.75),(7,3,4,3,15.75),(8,4,2,3,16.50);
 /*!40000 ALTER TABLE `tbl_ordercontent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,7 +108,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tbl_packs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_packs` (
   `packid` int(10) NOT NULL AUTO_INCREMENT,
   `edition` varchar(100) NOT NULL DEFAULT '',
@@ -129,9 +127,13 @@ CREATE TABLE `tbl_packs` (
 
 LOCK TABLES `tbl_packs` WRITE;
 /*!40000 ALTER TABLE `tbl_packs` DISABLE KEYS */;
-INSERT INTO `tbl_packs` VALUES (1,'Gatecrash',5.25,'2019-10-20 15:54:55','/WebMTG/Images/Gatecrash.jpg','Dans le bloc Ravnica'),(2,'Return To Ravnica',5.50,'2019-10-20 15:54:55','/WebMTG/Images/RTR.jpg','Dans le bloc Ravnica'),(3,'Iconic Masters',5.25,'2019-10-20 15:54:55','/WebMTG/Images/IconicMasters.jpg','Dans le bloc Ravnica'),(4,'Ixalan',5.25,'2019-10-20 15:54:55','/WebMTG/Images/Ixalan.jpg','Dans le bloc Ravnica'),(5,'Kaladesh',5.25,'2019-10-20 15:54:55','/WebMTG/Images/Kaladesh.jpg','Dans le bloc Ravnica');
+INSERT INTO `tbl_packs` VALUES (1,'Gatecrash',5.25,'2019-10-20 15:54:55','/WebMTG/Images/Gatecrash.png','Dans le bloc Ravnica'),(2,'Return To Ravnica',5.50,'2019-10-20 15:54:55','/WebMTG/Images/RTR.png','Dans le bloc Ravnica'),(3,'Iconic Masters',5.25,'2019-10-20 15:54:55','/WebMTG/Images/IconicMasters.png','Dans le bloc Ravnica'),(4,'Ixalan',5.25,'2019-10-20 15:54:55','/WebMTG/Images/Ixalan.png','Dans le bloc Ravnica'),(5,'Kaladesh',5.25,'2019-10-20 15:54:55','/WebMTG/Images/Kaladesh.png','Dans le bloc Ravnica');
 /*!40000 ALTER TABLE `tbl_packs` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'bd_mtg'
+--
 
 --
 -- Dumping routines for database 'bd_mtg'
@@ -234,7 +236,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-02 18:33:10
-USE `bd_mtg`;
-select * from tbl_order;
-select * from tbl_customers;
+-- Dump completed on 2019-12-03 14:22:33

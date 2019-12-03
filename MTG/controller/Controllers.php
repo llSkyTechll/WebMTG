@@ -27,7 +27,7 @@
       $_SESSION['lastname']  = $result['lastname'];
       $_SESSION['email']     = $result['email'];
       $_SESSION['custid']    = $result['custid'];
-      require('view/viewAccueil.php');
+      Accueil();
     }
   }
 
@@ -82,8 +82,8 @@
     {
         $panierArrayPourPanier=unserialize($_COOKIE["panier"]);
         $quantiteArrayPourPanier=unserialize($_COOKIE["quantite"]);
-    }           
-    $Pack= new ManagerPictures;    
+    }
+    $Pack= new ManagerPictures;
     for ($index=0;$index < count($panierArrayPourPanier);$index++) {
         $temp=$Pack->GetSpecificPicture($panierArrayPourPanier[$index]);
         $produit=$temp->fetch();
@@ -104,7 +104,7 @@
   function AjouterPanier(){
     $panier = !Empty($_POST['panier']) ? htmlentities($_POST['panier']):'';
     $quantite = !Empty($_POST['quantite']) ? htmlentities($_POST['quantite']):'';
-    
+
     $panierArray=array();
     $quantiteArray=array();
     if(!empty($_COOKIE["panier"]) && !empty($_COOKIE["quantite"]))
@@ -113,10 +113,10 @@
         $quantiteArray=unserialize($_COOKIE["quantite"]);
     }
     $HasBeenAdded=false;
-        for ($index=0; $index < count($panierArray) ; $index++) { 
+        for ($index=0; $index < count($panierArray) ; $index++) {
             if($panierArray[$index]==$panier && !$HasBeenAdded)
-            {               
-                $quantiteArray[$index]+= $quantite;                               
+            {
+                $quantiteArray[$index]+= $quantite;
                 $HasBeenAdded=true;
             }
         }
@@ -130,11 +130,11 @@
     setcookie("quantite",$quantiteArray_serialize,Time()*365*24*3600,null,null,false,true);
     echo implode('","',$panierArray);
     echo"|||";
-    echo implode(":",$quantiteArray);  
+    echo implode(":",$quantiteArray);
 }
 function RetirerPanier(){
   $panier = !Empty($_POST['panier']) ? htmlentities($_POST['panier']):'';
-  
+
   $AllPanierArray=array();
   $AllQuantiteArray=array();
   $panierArrayTemp=array();
@@ -144,26 +144,26 @@ function RetirerPanier(){
       $AllPanierArray=unserialize($_COOKIE["panier"]);
       $AllQuantiteArray=unserialize($_COOKIE["quantite"]);
   }
-      for ($index=0; $index < count($AllPanierArray) ; $index++) { 
+      for ($index=0; $index < count($AllPanierArray) ; $index++) {
           if($AllPanierArray[$index]!=$panier)
-          {               
+          {
               array_push($panierArrayTemp,$AllPanierArray[$index]);
               array_push($quantiteArrayTemp,$AllQuantiteArray[$index]);
           }
       }
-  
+
   $panierArray_serialize = serialize($panierArrayTemp);
   $quantiteArray_serialize = serialize($quantiteArrayTemp);
   setcookie("panier",$panierArray_serialize,Time()*365*24*3600,null,null,false,true);
   setcookie("quantite",$quantiteArray_serialize,Time()*365*24*3600,null,null,false,true);
   echo implode('","',$panierArrayTemp);
   echo"|||";
-  echo implode(":",$quantiteArrayTemp);  
+  echo implode(":",$quantiteArrayTemp);
 }
 function AjouterCommmande(){
     $custid = 0;
     $panier = new ManagerOrders;
-    if (!empty($_SESSION['custid'])) 
+    if (!empty($_SESSION['custid']))
     {
       $custid = $_SESSION['custid'];
       if(!empty($_COOKIE["panier"]) && !empty($_COOKIE["quantite"]))
@@ -172,14 +172,14 @@ function AjouterCommmande(){
           $AllQuantiteArray=unserialize($_COOKIE["quantite"]);
           $Customer = $panier->CreateOrder($custid);
           $CustomerID =$Customer->fetch();
-          for ($index=0; $index < count($AllPanierArray) ; $index++) { 
+          for ($index=0; $index < count($AllPanierArray) ; $index++) {
             //echo($AllPanierArray[$index]);
            // $OrderContent = $panier->AddOrderContent($CustomerID["CustomerId"],$AllPanierArray[$index],$AllQuantiteArray[$index]);
           }
           //echo($CustomerID["CustomerId"]);
           $updateOrder = $panier->UpdateOrder($CustomerID["CustomerId"]);
           //$panier->UpdateOrder($CustomerID["CustomerId"]);
-          
+
         }
       //require('view/viewAccueil.php');
     }
@@ -187,6 +187,6 @@ function AjouterCommmande(){
     {
       require('view/viewConnexion.php');
     }
-  
-} 
+
+}
 ?>
