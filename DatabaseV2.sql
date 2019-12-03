@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `bd_mtg` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `bd_mtg`;
 -- MySQL dump 10.13  Distrib 5.7.21, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: bd_mtg
@@ -171,7 +173,7 @@ BEGIN
 	INSERT INTO tbl_order(custid, totalprice, date)
     VALUE(customerid, 0, CURDATE());
     
-    SELECT LAST_INSERT_ID();
+    SELECT LAST_INSERT_ID() as CustomerId;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -233,3 +235,6 @@ DELIMITER ;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2019-12-02 18:33:10
+USE `bd_mtg`;
+select * from tbl_order;
+select * from tbl_customers;

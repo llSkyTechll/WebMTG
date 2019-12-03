@@ -1,4 +1,5 @@
 CREATE DATABASE  IF NOT EXISTS `bd_mtg` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `bd_mtg`;CREATE DATABASE  IF NOT EXISTS `bd_mtg` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `bd_mtg`;
 -- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --

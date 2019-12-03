@@ -64,7 +64,7 @@ function RetirerItemAuPanier($idProduit) {
     
 }
 function PasserCommande(){
-    swal('Commande effectué!',"",'success');   
+    //swal('Commande effectué!',"",'success');   
 //    $(document.getElementById("Group"+$idChoix)).addClass("d-none");
     $.ajax({   
         url 	: "index.php?action=AjouterCommmande",

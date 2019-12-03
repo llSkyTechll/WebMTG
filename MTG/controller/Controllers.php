@@ -161,16 +161,33 @@ function RetirerPanier(){
   echo"|||";
   echo implode(":",$quantiteArrayTemp);  
 }
-// function AjouterCommmande(){
-//     $custid = 0;
-//     $panier = new ManagerOrders;
-//     if (!empty($_SESSION['custid'])) {
-//       $custid = $_SESSION['custid'];
-//       $resultPanier = $panier->GetCart($custid);
-//       require('view/viewAccueil.php');
-//     } else {
-//       require('view/viewConnexion.php');
-//     }
+function AjouterCommmande(){
+    $custid = 0;
+    $panier = new ManagerOrders;
+    if (!empty($_SESSION['custid'])) 
+    {
+      $custid = $_SESSION['custid'];
+      if(!empty($_COOKIE["panier"]) && !empty($_COOKIE["quantite"]))
+        {
+          $AllPanierArray=unserialize($_COOKIE["panier"]);
+          $AllQuantiteArray=unserialize($_COOKIE["quantite"]);
+          $Customer = $panier->CreateOrder($custid);
+          $CustomerID =$Customer->fetch();
+          for ($index=0; $index < count($AllPanierArray) ; $index++) { 
+            //echo($AllPanierArray[$index]);
+           // $OrderContent = $panier->AddOrderContent($CustomerID["CustomerId"],$AllPanierArray[$index],$AllQuantiteArray[$index]);
+          }
+          //echo($CustomerID["CustomerId"]);
+          $updateOrder = $panier->UpdateOrder($CustomerID["CustomerId"]);
+          //$panier->UpdateOrder($CustomerID["CustomerId"]);
+          
+        }
+      //require('view/viewAccueil.php');
+    }
+    else
+    {
+      require('view/viewConnexion.php');
+    }
   
-// } 
+} 
 ?>
