@@ -3,33 +3,20 @@
 <?php ob_start(); ?>
 
 
-<form id="formulaire_connexion" class="pure-form pure-form-aligned" action="index.php?action=userConnexion" method="post" >
-    <fieldset>
-      <table>
-        <tr>
-          <td align="right">
-            <label for="email">Email:</label>
-          </td>
-          <td>
-            <input type="text" tabindex="10" name="email" id="email" />
-          </td>
-        </tr>
-        <tr>
-          <td align="right">
-            <label for="password">Mot de passe:</label>
-          </td>
-          <td>
-            <input type="text" tabindex="20" name="password" id="password" />
-          </td>
-        </tr>
-        <tr>
-        <tr>
-          <td colspan="3" align="center" width="100%">
-            <input class="pure-button pure-button-primary" type="submit" tabindex="30" value="Se connecter"/>
-          </td>
-        </tr>
-      </table>
-    </fieldset>
+<form id="formulaire_connexion" class="from-group" action="index.php?action=userConnexion" method="post" >
+       
+        <div class="form-group col-md-4">
+            <label for="email">Email</label>
+            <input class = "form-control"type="text" name="email" tabindex="30" id="email"  />
+        </div>
+        <div class="form-group col-md-4">
+            <label for="password">Mot de passe</label>
+            <input class = "form-control"type="password" name="password" tabindex="40" id="password"  />
+        </div>
+        <input class="btn btn-secondary" type="submit" tabindex="30" value="Se connecter"/>
+
+
+   
 </form>
 <script>
 $("#formulaire_connexion").validate({

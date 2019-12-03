@@ -17,10 +17,7 @@ try {
 				break;
 			case 'inscription':
 				Inscription();
-				break;
-			case 'historique':
-				UserConnexion();
-				break;
+				break;			
 			case 'validationInscription':
 				ValiderInformationInscription();
 				break;
