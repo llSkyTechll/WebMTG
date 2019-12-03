@@ -31,13 +31,16 @@ try {
 				Commande();
 				break;
 			case 'AjouterPanier':
-			AjouterPanier();
+				AjouterPanier();
+				break;
+			case 'UpdatePanier':
+				UpdatePanier();
 				break;
 			case 'RetirerPanier':
-			RetirerPanier();
+				RetirerPanier();
 				break;
 			case 'AjouterCommmande':
-			AjouterCommmande();
+				AjouterCommmande();
 				break;
 			default :
 				throw new Exception('Aucune page spécifique demandée');

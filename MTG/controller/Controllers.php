@@ -59,12 +59,6 @@
   }
 
   function Accueil(){
-    // if (empty($_POST["packorder"])) {
-    //   $order  = 'edition';
-    // }
-    // else {
-    //   $order  = htmlentities($_POST["packorder"]);
-    // }
     $pack = new ManagerPictures;
       $resultPacks = $pack ->GetAllPictures();
     require('view/viewAccueil.php');
@@ -75,6 +69,7 @@
   }
 
   function Panier(){
+    $Pack= new ManagerPictures;
     $panierArrayPourPanier=array();
     $quantiteArrayPourPanier=array();
     $panierAfficheArray=array();
@@ -84,7 +79,6 @@
         $panierArrayPourPanier=unserialize($_COOKIE["panier"]);
         $quantiteArrayPourPanier=unserialize($_COOKIE["quantite"]);
     }
-    $Pack= new ManagerPictures;
     for ($index=0;$index < count($panierArrayPourPanier);$index++) {
         $temp=$Pack->GetSpecificPicture($panierArrayPourPanier[$index]);
         $produit=$temp->fetch();
@@ -129,9 +123,31 @@
     $quantiteArray_serialize = serialize($quantiteArray);
     setcookie("panier",$panierArray_serialize,Time()*365*24*3600,null,null,false,true);
     setcookie("quantite",$quantiteArray_serialize,Time()*365*24*3600,null,null,false,true);
-    echo implode('","',$panierArray);
-    echo"|||";
-    echo implode(":",$quantiteArray);
+    
+}
+function UpdatePanier(){
+  $panier = !Empty($_POST['panier']) ? htmlentities($_POST['panier']):'';
+  $quantity = !Empty($_POST['quantity']) ? htmlentities($_POST['quantity']):'';
+
+  $panierArray=array();
+  $quantiteArray=array();
+  if(!empty($_COOKIE["panier"]) && !empty($_COOKIE["quantite"]))
+  {
+      $panierArray=unserialize($_COOKIE["panier"]);
+      $quantiteArray=unserialize($_COOKIE["quantite"]);
+  }
+      for ($index=0; $index < count($panierArray) ; $index++) {
+          if($panierArray[$index]==$panier )
+          {
+              $quantiteArray[$index] = $quantity;
+          }
+      }
+  
+  $panierArray_serialize = serialize($panierArray);
+  $quantiteArray_serialize = serialize($quantiteArray);
+  setcookie("panier",$panierArray_serialize,Time()*365*24*3600,null,null,false,true);
+  setcookie("quantite",$quantiteArray_serialize,Time()*365*24*3600,null,null,false,true);
+  
 }
 function RetirerPanier(){
   $panier = !Empty($_POST['panier']) ? htmlentities($_POST['panier']):'';
@@ -157,9 +173,7 @@ function RetirerPanier(){
   $quantiteArray_serialize = serialize($quantiteArrayTemp);
   setcookie("panier",$panierArray_serialize,Time()*365*24*3600,null,null,false,true);
   setcookie("quantite",$quantiteArray_serialize,Time()*365*24*3600,null,null,false,true);
-  echo implode('","',$panierArrayTemp);
-  echo"|||";
-  echo implode(":",$quantiteArrayTemp);
+  
 }
 function AjouterCommmande(){
     $custid = 0;

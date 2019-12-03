@@ -16,7 +16,7 @@ $gestion_ajax='type="text/javascript" src="js/gestion_accueil.js"';
       <img src="<?php echo $panierAfficheArray[$index]['picture']; ?>" class="img-fluid image" alt="<?php echo $panierAfficheArray[$index]['edition']; ?>">
       <p > <?php echo $panierAfficheArray[$index]['description']; ?></p>
 
-      <input id="quantity<?php echo $panierAfficheArray[$index]['packid']; ?>" type="number" name="quantity" min="1"value="<?php echo $quantiteAfficheArray[$index]; ?>" disabled>
+      <input id="quantity<?php echo $panierAfficheArray[$index]['packid']; ?>" type="number" name="quantity" min="1"value="<?php echo $quantiteAfficheArray[$index]; ?>" onchange="UpdatePanier(<?php echo $panierAfficheArray[$index]['packid']; ?>)">
       <button id="ImagePanier<?php echo $panierAfficheArray[$index]['packid']; ?>" type="button" class="btn btn-warning" value="<?php echo $panierAfficheArray[$index]['packid']; ?>" onclick="RetirerPanier(<?php echo $panierAfficheArray[$index]['packid']; ?>)">Retirer du panier</button>
     </div>
   <?php

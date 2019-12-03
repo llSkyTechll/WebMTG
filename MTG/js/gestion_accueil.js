@@ -1,8 +1,7 @@
 
 
 function AjouterPanier($idChoix){
-    $NumberOfItem=document.getElementById("quantity"+$idChoix).value;
-    AjouterItemAuPanier($NumberOfItem,$idChoix);
+    AjouterItemAuPanier(1,$idChoix);
 	$.ajax({
         url 	: "view/imagePanier.php",
         type 	: "POST",
@@ -19,14 +18,12 @@ function AjouterPanier($idChoix){
     });
 }
 function AjouterItemAuPanier($Quantite,$idProduit) {
-
-
     $.ajax({
         url 	: "index.php?action=AjouterPanier",
         type 	: "POST",
         data 	: {panier:$idProduit,quantite:$Quantite},
         success : function(output){
-                    alert(output);
+                    
                     $choix="";
                     $($choix).html(output);
                 },
@@ -45,14 +42,12 @@ function RetirerPanier($idChoix){
     RetirerItemAuPanier($idChoix);
 }
 function RetirerItemAuPanier($idProduit) {
-
-
     $.ajax({
         url 	: "index.php?action=RetirerPanier",
         type 	: "POST",
         data 	: {panier:$idProduit},
         success : function(output){
-                    alert(output);
+                    
                     $choix="";
                     $($choix).html(output);
                 },
@@ -64,14 +59,29 @@ function RetirerItemAuPanier($idProduit) {
 
 }
 function PasserCommande(){
-    //swal('Commande effectué!',"",'success');
-//    $(document.getElementById("Group"+$idChoix)).addClass("d-none");
     $.ajax({
         url 	: "index.php?action=AjouterCommmande",
         type 	: "POST",
         data 	: {},
         success : function(output){
-                    alert(output);
+                    
+                    $choix="";
+                    $($choix).html(output);
+                },
+        error	: function(){
+                    $choix="";
+                    $($choix).html("Une erreur est survenue");
+                }
+    });
+}
+function UpdatePanier($idProduit)
+{
+    $NumberOfItem=document.getElementById("quantity"+$idProduit).value;
+    $.ajax({
+        url 	: "index.php?action=UpdatePanier",
+        type 	: "POST",
+        data 	: {panier:$idProduit,quantity:$NumberOfItem},
+        success : function(output){
                     $choix="";
                     $($choix).html(output);
                 },
