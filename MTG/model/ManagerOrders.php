@@ -15,7 +15,7 @@
       return $orders;
     }
     public function AddOrderContent($customerorder,$selectedpack,$chosenquantity){
-      $sql =  'call customerorder(:customerorder,:selectedpack,:chosenquantity)'; 
+      $sql =  'call AddOrderContent(:customerorder,:selectedpack,:chosenquantity)'; 
       $OrderContent = self::getConnexion()->prepare($sql);
       $OrderContent->bindparam('customerorder',$customerorder,pdo::PARAM_STR,999);
       $OrderContent->bindparam('selectedpack',$selectedpack,pdo::PARAM_STR,999);

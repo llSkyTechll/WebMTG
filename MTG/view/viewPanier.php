@@ -22,7 +22,7 @@ $gestion_ajax='type="text/javascript" src="gestion_accueil.js"';
   <?php
   }
   ?>
-    <input type="button" name="btnConvertCart" id="btnConvertCart" value="Passer la commande" onclick="PasserCommande()">
+    <input type="button" name="btnConvertCart" id="btnConvertCart" value="Passer la commande" onclick="window.location.href = 'index.php?action=AjouterCommmande'">
 </div>
 <?php $contenu = ob_get_clean(); ?>
 

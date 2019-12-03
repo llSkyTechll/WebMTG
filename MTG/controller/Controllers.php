@@ -174,19 +174,17 @@ function AjouterCommmande(){
           $Customer = $panier->CreateOrder($custid);
           $CustomerID =$Customer->fetch();
           for ($index=0; $index < count($AllPanierArray) ; $index++) { 
-            //echo($AllPanierArray[$index]);
-           // $OrderContent = $panier->AddOrderContent($CustomerID["CustomerId"],$AllPanierArray[$index],$AllQuantiteArray[$index]);
+            $OrderContent = $panier->AddOrderContent($CustomerID["CustomerId"],$AllPanierArray[$index],$AllQuantiteArray[$index]);
           }
-          //echo($CustomerID["CustomerId"]);
           $updateOrder = $panier->UpdateOrder($CustomerID["CustomerId"]);
-          //$panier->UpdateOrder($CustomerID["CustomerId"]);
-          
+          setcookie("panier","", time() - 3600,null,null,false,true);
+          setcookie("quantite","", time() - 3600,null,null,false,true);
         }
-      //require('view/viewAccueil.php');
+      Accueil();
     }
     else
     {
-      require('view/viewConnexion.php');
+      Connexion();
     }
   
 } 
