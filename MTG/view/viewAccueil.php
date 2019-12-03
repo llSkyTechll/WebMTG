@@ -18,7 +18,7 @@ $gestion_ajax='type="text/javascript" src="js\gestion_accueil.js"';
 			{ ?>
 					<tr>
 						<td>
-							<div class = "form-group ">
+							<div class = "form-group">
 									<img align="center" src="<?php echo $enregistrement['picture']; ?>" class="img-fluid image" alt="<?php echo $enregistrement['edition']; ?>">
 									<p align="center"> <?php echo $enregistrement['description']; ?></p>
 									<p align="center">Prix: <?php echo $enregistrement['price'] ?> $</p>

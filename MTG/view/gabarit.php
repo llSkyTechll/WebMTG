@@ -36,7 +36,7 @@
     </div>
     <script <?php if (!empty($gestion_ajax)) {echo $gestion_ajax;} ?> ></script>
     <script>
-		  $( "#accordion" ).accordion({ heightStyle: "content" });
+		  $("#accordion").accordion({ heightStyle:"content"});
 		</script>
   </body>
 </html>
