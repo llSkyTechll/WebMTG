@@ -9,12 +9,7 @@ $gestion_ajax='type="text/javascript" src="gestion_accueil.js"';
 	<form class="pure-form pure-form-aligned" action="index.php?action=accueil" method="post" >
 
 		<fieldset>
-			<div class="form-group">
-				<select name="packorder" onchange="submit()">
-					<option value="edition">Edition</option>
-					<option value="releasedate">Date de sortie</option>
-					<option value="price">Prix</option>
-				</select>
+			<div class="form-group">				
 				<table>
 			<?php
 				if (!empty($resultPacks))
@@ -24,8 +19,8 @@ $gestion_ajax='type="text/javascript" src="gestion_accueil.js"';
 					<tr>
 						<td>
 							<div class = "form-group ">
-									<img src="<?php echo $enregistrement['picture']; ?>" class="img-fluid image" alt="<?php echo $enregistrement['edition']; ?>">
-									<p > <?php echo $enregistrement['description']; ?></p>
+									<img align="center" src="<?php echo $enregistrement['picture']; ?>" class="img-fluid image" alt="<?php echo $enregistrement['edition']; ?>">
+									<p align="center"> <?php echo $enregistrement['description']; ?></p>
 									<div id="ImagePanier<?php echo $enregistrement['packid']; ?>"></div>
 									<input id="quantity<?php echo $enregistrement['packid']; ?>" type="number" name="quantity" min="1"value="1">
 									<button id="ImagePanier<?php echo $enregistrement['packid']; ?>" type="button" class="btn btn-light" value="<?php echo $enregistrement['packid']; ?>" onclick="AjouterPanier(<?php echo $enregistrement['packid']; ?>)">Ajouter au panier</button>
@@ -34,8 +29,8 @@ $gestion_ajax='type="text/javascript" src="gestion_accueil.js"';
 						<td>
 							<?php 	if ($enregistrement=$resultPacks->fetch()) { ?>
 								<div class = "form-group ">
-										<img src="<?php echo $enregistrement['picture']; ?>" class="img-fluid image" alt="<?php echo $enregistrement['edition']; ?>">
-										<p> <?php echo $enregistrement['description']; ?></p>
+										<img align="center" src="<?php echo $enregistrement['picture']; ?>" class="img-fluid image" alt="<?php echo $enregistrement['edition']; ?>">
+										<p align="center"> <?php echo $enregistrement['description']; ?></p>
 										<div id="ImagePanier<?php echo $enregistrement['packid']; ?>"></div>
 										<input id="quantity<?php echo $enregistrement['packid']; ?>"type="number" name="quantity" min="1"value="1">
 										<button id="ImagePanier<?php echo $enregistrement['packid']; ?>" type="button" class="btn btn-light" value="<?php echo $enregistrement['packid']; ?>" onclick="AjouterPanier(<?php echo $enregistrement['packid']; ?>)">Ajouter au panier</button>
@@ -49,7 +44,6 @@ $gestion_ajax='type="text/javascript" src="gestion_accueil.js"';
 			</div>
 			<?php }?>
 		</fieldset>
-
 	</form>
 </div>
 <?php $contenu = ob_get_clean(); ?>
