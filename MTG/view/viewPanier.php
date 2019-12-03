@@ -6,7 +6,7 @@ $gestion_ajax='type="text/javascript" src="gestion_accueil.js"';
 <?php ob_start() ?>
 
 
-<div class="pure-control-group">
+<div class="form-group">
   <?php 
   for ($index=0;$index < count($panierAfficheArray);$index++) 
   {

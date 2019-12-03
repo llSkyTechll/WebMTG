@@ -3,32 +3,32 @@
 <?php ob_start(); ?>
 
 
-<form id="formulaire_validation" class="pure-form pure-form-aligned" action="index.php?action=validationInscription" method="post" >
-    <fieldset>
-        <div class="pure-control-group">
+<form id="formulaire_validation" class="from-group" action="index.php?action=validationInscription" method="post" >
+    
+        <div class="form-group col-md-4">
             <label for="fistName">Nom</label>
-            <input type="text" name="firstName" tabindex="10" id="fistName" />
+            <input class = "form-control" type="text" name="firstName" tabindex="10" id="fistName" />
         </div>
-        <div class="pure-control-group">
+        <div class="form-group col-md-4">
             <label for="lastName">Prenom</label>
-            <input type="text" name="lastName" tabindex="20" id="lastName" />
+            <input class = "form-control"type="text" name="lastName" tabindex="20" id="lastName" />
         </div>
-        <div class="pure-control-group">
+        <div class="form-group col-md-4">
             <label for="email">Email</label>
-            <input type="text" name="email" tabindex="30" id="email"  />
+            <input class = "form-control"type="text" name="email" tabindex="30" id="email"  />
         </div>
-        <div class="pure-control-group">
+        <div class="form-group col-md-4">
             <label for="password">Mot de passe</label>
-            <input type="password" name="password" tabindex="40" id="password"  />
+            <input class = "form-control"type="password" name="password" tabindex="40" id="password"  />
         </div>
-        <div class="pure-control-group">
+        <div class="form-group col-md-4">
             <label for="password_validation">Confirmation de mot de passe</label>
-            <input type="password" name="password_validation" tabindex="50" id="password_validation"  />
+            <input class = "form-control" type="password" name="password_validation" tabindex="50" id="password_validation"  />
         </div>
-        <div class="pure-controls">
-            <input class="pure-button pure-button-primary" type="submit" tabindex="60" value="S'inscrire"/>
+        <div class="form-group col-md-4">
+            <input  class="btn btn-secondary" type="submit" tabindex="60" value="S'inscrire"/>
         </div>
-    </fieldset>
+    
 </form>
 <script>
 $("#formulaire_validation").validate({
