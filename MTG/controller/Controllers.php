@@ -46,7 +46,8 @@
 
   function Deconnexion(){
     $_SESSION = array();
-    require('view/viewAccueil.php');
+    echo "<script type=\"text/javascript\">swal('Email déjà utilisé.');</script>";
+    Accueil();
   }
 
   function Connexion(){

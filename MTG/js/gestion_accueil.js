@@ -1,30 +1,30 @@
 
 
 function AjouterPanier($idChoix){
-    swal('Ajouter au panier!',"",'success');
     $NumberOfItem=document.getElementById("quantity"+$idChoix).value;
     AjouterItemAuPanier($NumberOfItem,$idChoix);
-	$.ajax({   
+	$.ajax({
         url 	: "view/imagePanier.php",
         type 	: "POST",
-        data 	: {idChoix:$idChoix},   
+        data 	: {idChoix:$idChoix},
         success : function(output){
                     $choix="#ImagePanier"+$idChoix;
                     $($choix).html(output);
+                    swal('Ajouter au panier!',"",'success');
                 },
         error	: function(){
                     $choix="#ImagePanier"+$idChoix;
                     $($choix).html("Une erreur est survenue");
-                }	
+                }
     });
 }
 function AjouterItemAuPanier($Quantite,$idProduit) {
-   
 
-    $.ajax({   
+
+    $.ajax({
         url 	: "index.php?action=AjouterPanier",
         type 	: "POST",
-        data 	: {panier:$idProduit,quantite:$Quantite},   
+        data 	: {panier:$idProduit,quantite:$Quantite},
         success : function(output){
                     alert(output);
                     $choix="";
@@ -33,24 +33,24 @@ function AjouterItemAuPanier($Quantite,$idProduit) {
         error	: function(){
                     $choix="";
                     $($choix).html("Une erreur est survenue");
-                }	
+                }
     });
-    
+
 }
 
 function RetirerPanier($idChoix){
      swal('Retirer du panier!',"",'success');
-    // NumberOfItem=document.getElementById("quantity"+$idChoix).value;    
+    // NumberOfItem=document.getElementById("quantity"+$idChoix).value;
     $(document.getElementById("Group"+$idChoix)).addClass("d-none");
-    RetirerItemAuPanier($idChoix);	
+    RetirerItemAuPanier($idChoix);
 }
 function RetirerItemAuPanier($idProduit) {
-   
 
-    $.ajax({   
+
+    $.ajax({
         url 	: "index.php?action=RetirerPanier",
         type 	: "POST",
-        data 	: {panier:$idProduit},   
+        data 	: {panier:$idProduit},
         success : function(output){
                     alert(output);
                     $choix="";
@@ -59,17 +59,17 @@ function RetirerItemAuPanier($idProduit) {
         error	: function(){
                     $choix="";
                     $($choix).html("Une erreur est survenue");
-                }	
+                }
     });
-    
+
 }
 function PasserCommande(){
-    //swal('Commande effectué!',"",'success');   
+    //swal('Commande effectué!',"",'success');
 //    $(document.getElementById("Group"+$idChoix)).addClass("d-none");
-    $.ajax({   
+    $.ajax({
         url 	: "index.php?action=AjouterCommmande",
         type 	: "POST",
-        data 	: {},   
+        data 	: {},
         success : function(output){
                     alert(output);
                     $choix="";
@@ -78,6 +78,6 @@ function PasserCommande(){
         error	: function(){
                     $choix="";
                     $($choix).html("Une erreur est survenue");
-                }	
-    });	
+                }
+    });
 }
