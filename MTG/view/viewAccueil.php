@@ -23,7 +23,7 @@ $gestion_ajax='type="text/javascript" src="js\gestion_accueil.js"';
 									<p align="center"> <?php echo $enregistrement['description']; ?></p>
 									<p align="center">Prix: <?php echo $enregistrement['price'] ?> $</p>
 									<div id="ImagePanier<?php echo $enregistrement['packid']; ?>"></div>
-									<input id="quantity<?php echo $enregistrement['packid']; ?>" type="number" name="quantity" min="1"value="1">
+									<input id="quantity<?php echo $enregistrement['packid']; ?>" type="number" name="quantity" min="1" value="1">
 									<button id="ImagePanier<?php echo $enregistrement['packid']; ?>" type="button" class="btn btn-light" value="<?php echo $enregistrement['packid']; ?>" onclick="AjouterPanier(<?php echo $enregistrement['packid']; ?>)">Ajouter au panier</button>
 							</div>
 						</td>
