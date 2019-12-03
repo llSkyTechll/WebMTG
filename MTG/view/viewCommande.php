@@ -34,6 +34,7 @@
           $resultOrders->closeCursor();
         ?>
     </div>
+    
 <?php $contenu = ob_get_clean(); ?>
 
 <?php require 'gabarit.php'; ?>

@@ -95,11 +95,11 @@ $("#formulaire_validation").validate({
 
     $.validator.addMethod("regexp_firstName",
     function (value, element){
-    return this.optional(element) || /[a-zA-Z]{30}/.test(value);
+    return this.optional(element) || /[a-zA-Z]{3,30}/.test(value);
     }, 'Exemple de format: Roy');
     $.validator.addMethod("regexp_lastName",
     function (value, element){
-    return this.optional(element) || /[a-zA-Z]{30}/.test(value);
+    return this.optional(element) || /[a-zA-Z]{3,30}/.test(value);
     }, 'Exemple de format: Luc');
     $.validator.addMethod("regexp_password",
     function (value, element){

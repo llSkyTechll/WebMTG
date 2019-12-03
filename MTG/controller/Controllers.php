@@ -15,20 +15,26 @@
   }
 
   function UserConnexion(){
-    $email = htmlentities($_POST['email']);
-    $password = htmlentities($_POST['password']);
-    $user = new ManagerUsers;
-    $userInfo = $user->GetUserInfo($email, $password);
-    if (empty($result = $userInfo->fetch())) {
-      echo "<script type=\"text/javascript\">alert('Email et/ou mot de passe incorrect.');</script>";
-      require('view/viewConnexion.php');
-    }else {
-      $_SESSION['firstname'] = $result['firstname'];
-      $_SESSION['lastname']  = $result['lastname'];
-      $_SESSION['email']     = $result['email'];
-      $_SESSION['custid']    = $result['custid'];
-      Accueil();
+    if (!empty($_POST['email']) && !empty($_POST['password'])) {
+      $email = htmlentities($_POST['email']);
+      $password = htmlentities($_POST['password']);
+      $user = new ManagerUsers;
+      $userInfo = $user->GetUserInfo($email, $password);
+      if (empty($result = $userInfo->fetch())) {
+        echo "<script type=\"text/javascript\">alert('Email et/ou mot de passe incorrect.');</script>";
+        require('view/viewConnexion.php');
+      }else {
+         $_SESSION['firstname'] = $result['firstname'];
+        $_SESSION['lastname']  = $result['lastname'];
+        $_SESSION['email']     = $result['email'];
+        $_SESSION['custid']    = $result['custid'];
+        Accueil();
+      }
     }
+    else {
+        Connexion();
+    }
+    
   }
 
   function ValiderInformationInscription(){
@@ -42,12 +48,16 @@
         Inscription(); //Possibilité d'amélioration avec AJAX
       }
     }
+    else {
+        Inscription();
+    }
   }
 
-  function Deconnexion(){
-    $_SESSION = array();
-    echo "<script type=\"text/javascript\">alert('Déconnexion effectuée avec succès');</script>";
-    Accueil();
+  function Deconnexion(){    
+      $_SESSION = array();
+      echo "<script type=\"text/javascript\">alert('Déconnexion effectuée avec succès');</script>";
+      Accueil();
+   
   }
 
   function Connexion(){
@@ -61,6 +71,7 @@
   function Accueil(){
     $pack = new ManagerPictures;
       $resultPacks = $pack ->GetAllPictures();
+      $lePanierDID = GetPanier();
     require('view/viewAccueil.php');
   }
 
@@ -68,6 +79,15 @@
      require('view/viewValidation.php');
   }
 
+  function GetPanier()
+  {
+    $panierArray=array();
+    if(!empty($_COOKIE["panier"]) )
+    {
+        $panierArray=unserialize($_COOKIE["panier"]);
+    }
+    return $panierArray;
+  }
   function Panier(){
     $Pack= new ManagerPictures;
     $panierArrayPourPanier=array();
@@ -97,6 +117,7 @@
   }
 
   function AjouterPanier(){
+    if (!Empty($_POST['panier']) && !Empty($_POST['quantite'])) {
     $panier = !Empty($_POST['panier']) ? htmlentities($_POST['panier']):'';
     $quantite = !Empty($_POST['quantite']) ? htmlentities($_POST['quantite']):'';
 
@@ -108,13 +129,13 @@
         $quantiteArray=unserialize($_COOKIE["quantite"]);
     }
     $HasBeenAdded=false;
-        for ($index=0; $index < count($panierArray) ; $index++) {
-            if($panierArray[$index]==$panier && !$HasBeenAdded)
-            {
-                $quantiteArray[$index]+= $quantite;
-                $HasBeenAdded=true;
-            }
-        }
+    for ($index=0; $index < count($panierArray) ; $index++) {
+      if($panierArray[$index]==$panier && !$HasBeenAdded)
+      {
+        $quantiteArray[$index]+= $quantite;
+        $HasBeenAdded=true;
+      }
+    }
     if (!$HasBeenAdded) {
         array_push($panierArray,$panier);
         array_push($quantiteArray,$quantite);
@@ -123,56 +144,68 @@
     $quantiteArray_serialize = serialize($quantiteArray);
     setcookie("panier",$panierArray_serialize,Time()*365*24*3600,null,null,false,true);
     setcookie("quantite",$quantiteArray_serialize,Time()*365*24*3600,null,null,false,true);
-    
-}
-function UpdatePanier(){
-  $panier = !Empty($_POST['panier']) ? htmlentities($_POST['panier']):'';
-  $quantity = !Empty($_POST['quantity']) ? htmlentities($_POST['quantity']):'';
-
-  $panierArray=array();
-  $quantiteArray=array();
-  if(!empty($_COOKIE["panier"]) && !empty($_COOKIE["quantite"]))
-  {
-      $panierArray=unserialize($_COOKIE["panier"]);
-      $quantiteArray=unserialize($_COOKIE["quantite"]);
+    }
+    else {
+      Accueil();
+    }
   }
-      for ($index=0; $index < count($panierArray) ; $index++) {
-          if($panierArray[$index]==$panier )
-          {
-              $quantiteArray[$index] = $quantity;
-          }
+function UpdatePanier(){
+  if (!Empty($_POST['panier']) && !Empty($_POST['quantity'])) {    
+    $panier = !Empty($_POST['panier']) ? htmlentities($_POST['panier']):'';
+    $quantity = !Empty($_POST['quantity']) ? htmlentities($_POST['quantity']):'';  
+    $panierArray=array();
+    $quantiteArray=array();
+    if(!empty($_COOKIE["panier"]) && !empty($_COOKIE["quantite"]))
+    {
+        $panierArray=unserialize($_COOKIE["panier"]);
+        $quantiteArray=unserialize($_COOKIE["quantite"]);
+    }
+    for ($index=0; $index < count($panierArray) ; $index++)
+    {
+      if($panierArray[$index]==$panier )
+      {
+        $quantiteArray[$index] = $quantity;
       }
-  
-  $panierArray_serialize = serialize($panierArray);
-  $quantiteArray_serialize = serialize($quantiteArray);
-  setcookie("panier",$panierArray_serialize,Time()*365*24*3600,null,null,false,true);
-  setcookie("quantite",$quantiteArray_serialize,Time()*365*24*3600,null,null,false,true);
-  
+    }    
+    $panierArray_serialize = serialize($panierArray);
+    $quantiteArray_serialize = serialize($quantiteArray);
+    setcookie("panier",$panierArray_serialize,Time()*365*24*3600,null,null,false,true);
+    setcookie("quantite",$quantiteArray_serialize,Time()*365*24*3600,null,null,false,true);
+  }
+  else {
+      Accueil();
+  }
 }
 function RetirerPanier(){
-  $panier = !Empty($_POST['panier']) ? htmlentities($_POST['panier']):'';
-
-  $AllPanierArray=array();
-  $AllQuantiteArray=array();
-  $panierArrayTemp=array();
-  $quantiteArrayTemp=array();
-  if(!empty($_COOKIE["panier"]) && !empty($_COOKIE["quantite"]))
-  {
-      $AllPanierArray=unserialize($_COOKIE["panier"]);
-      $AllQuantiteArray=unserialize($_COOKIE["quantite"]);
+  if (!Empty($_POST['panier'])) {
+  
+    $panier = !Empty($_POST['panier']) ? htmlentities($_POST['panier']):'';
+  
+    $AllPanierArray=array();
+    $AllQuantiteArray=array();
+    $panierArrayTemp=array();
+    $quantiteArrayTemp=array();
+    if(!empty($_COOKIE["panier"]) && !empty($_COOKIE["quantite"]))
+    {
+        $AllPanierArray=unserialize($_COOKIE["panier"]);
+        $AllQuantiteArray=unserialize($_COOKIE["quantite"]);
+    }
+        for ($index=0; $index < count($AllPanierArray) ; $index++) {
+            if($AllPanierArray[$index]!=$panier)
+            {
+                array_push($panierArrayTemp,$AllPanierArray[$index]);
+                array_push($quantiteArrayTemp,$AllQuantiteArray[$index]);
+            }
+        }
+  
+    $panierArray_serialize = serialize($panierArrayTemp);
+    $quantiteArray_serialize = serialize($quantiteArrayTemp);
+    setcookie("panier",$panierArray_serialize,Time()*365*24*3600,null,null,false,true);
+    setcookie("quantite",$quantiteArray_serialize,Time()*365*24*3600,null,null,false,true);
   }
-      for ($index=0; $index < count($AllPanierArray) ; $index++) {
-          if($AllPanierArray[$index]!=$panier)
-          {
-              array_push($panierArrayTemp,$AllPanierArray[$index]);
-              array_push($quantiteArrayTemp,$AllQuantiteArray[$index]);
-          }
-      }
-
-  $panierArray_serialize = serialize($panierArrayTemp);
-  $quantiteArray_serialize = serialize($quantiteArrayTemp);
-  setcookie("panier",$panierArray_serialize,Time()*365*24*3600,null,null,false,true);
-  setcookie("quantite",$quantiteArray_serialize,Time()*365*24*3600,null,null,false,true);
+  else {
+    Accueil();
+  }
   
 }
 function AjouterCommmande(){
