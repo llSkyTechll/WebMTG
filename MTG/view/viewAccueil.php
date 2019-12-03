@@ -5,11 +5,11 @@ $gestion_ajax='type="text/javascript" src="gestion_accueil.js"';
 
 <?php ob_start(); ?>
 
-<div class="pure-control-group">
+<div class="form-group">
 	<form class="pure-form pure-form-aligned" action="index.php?action=accueil" method="post" >
 
 		<fieldset>
-			<div class="pure-control-group">
+			<div class="form-group">
 				<select name="packorder" onchange="submit()">
 					<option value="edition">Edition</option>
 					<option value="releasedate">Date de sortie</option>

@@ -3,28 +3,39 @@
 
   class ManagerOrders extends Connexion // hérite de la classe connexion
   {
-    // Renvoie la liste des membres triés par nom dans l'ordre alphabétique
-    public function GetCart($custid) {
-      $sql = 'SELECT cartcontentid, tbl_cartcontent.cartid, tbl_cartcontent.quantity, tbl_packs.packid, edition, picture, description
-              FROM tbl_cartcontent
-              INNER JOIN tbl_cart ON tbl_cart.cartid = tbl_cartcontent.cartid
-              INNER JOIN tbl_packs ON tbl_packs.packid = tbl_cartcontent.packid
-              WHERE custid = '.$custid.' AND tbl_cart.isActive = 1';
-  	  $cart = self::getConnexion()->prepare($sql);
-      $cart->execute();
-  	  return $cart;
-    }
-
     public function GetOrders($custid){
       $sql = 'SELECT *
-              FROM tbl_order
-              INNER JOIN tbl_cartcontent ON tbl_cartcontent.cartid = tbl_order.cartid
-              INNER JOIN tbl_packs ON tbl_packs.packid = tbl_cartcontent.packid
-              WHERE custid = '.$custid.'
-              ORDER BY date DESC';
+      FROM tbl_order
+      INNER JOIN tbl_ordercontent ON tbl_ordercontent.orderid = tbl_order.orderid
+      INNER JOIN tbl_packs ON tbl_packs.packid = tbl_ordercontent.packid
+      WHERE custid = '.$custid.'
+      ORDER BY date DESC';
       $orders = self::getConnexion()->prepare($sql);
       $orders->execute();
       return $orders;
+    }
+    public function AddOrderContent($customerorder,$selectedpack,$chosenquantity){
+      $sql =  'call customerorder(:customerorder,:selectedpack,:chosenquantity)'; 
+      $OrderContent = self::getConnexion()->prepare($sql);
+      $OrderContent->bindparam('customerorder',$customerorder,pdo::PARAM_STR,999);
+      $OrderContent->bindparam('selectedpack',$selectedpack,pdo::PARAM_STR,999);
+      $OrderContent->bindparam('chosenquantity',$chosenquantity,pdo::PARAM_STR,999);
+      $OrderContent->execute();
+      return $OrderContent;
+    }
+    public function CreateOrder($customerid){
+      $sql =  'call CreateOrder(:customerid)'; 
+      $Customer = self::getConnexion()->prepare($sql);
+      $Customer->bindparam('customerid',$customerid,pdo::PARAM_STR,999);
+      $Customer->execute();
+      return $Customer;
+    }
+    public function UpdateOrder($customerid){
+      $sql =  'call UpdateOrder(:customerid)'; 
+      $UpdateOrder = self::getConnexion()->prepare($sql);
+      $UpdateOrder->bindparam('customerid',$customerid,pdo::PARAM_STR,999);
+      $UpdateOrder->execute();
+      return $UpdateOrder;
     }
   }
 ?>

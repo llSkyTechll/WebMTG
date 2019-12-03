@@ -18,19 +18,14 @@ class ManagerPictures extends Connexion // hérite de la classe connexion
     $Pack->execute();
     return $Pack;
   }
-   public function GetSpecificPicture($packId){
-     $sql = 'SELECT * FROM tbl_packs WHERE packid = "'.$packId.'"';
-     $Pack = self::getConnexion()->prepare($sql);
-     $Pack->execute();
-	   return $Pack;
-   }
-   public function getProduitInPanier($listeItem){
-    $sql =  'call getAllInCart(:items)'; 
-    $resultat = self::getConnexion()->prepare($sql);
-    $resultat->bindparam('items',$listeItem,pdo::PARAM_STR,999);
-    $resultat->execute();
-    return $resultat;
-  }
+   
+public function GetSpecificPicture($packId){
+  $sql =  'call GetSpecificPicture(:packId)'; 
+  $Pack = self::getConnexion()->prepare($sql);
+  $Pack->bindparam('packId',$packId,pdo::PARAM_STR,999);
+  $Pack->execute();
+  return $Pack;
+}
 
   //  public function GetUserInfo($email, $password){
   //    $sql = 'SELECT custid, firstname, lastname, email

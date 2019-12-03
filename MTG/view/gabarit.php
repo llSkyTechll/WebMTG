@@ -30,7 +30,7 @@
           <H1> <?php echo $titre ?></H1>
         </article>
       </div>
-        <div class="col-md-12 form-group">
+        <div class="col-md-12">
           <?php echo $contenu ?>
         </div>
     </div>

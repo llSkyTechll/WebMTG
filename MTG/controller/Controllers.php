@@ -74,13 +74,22 @@
   }
 
   function Panier(){
-    $custid = 0;
-    $panier = new ManagerOrders;
-    if (!empty($_SESSION['custid'])) {
-      $custid = $_SESSION['custid'];
-      $resultPanier = $panier->GetCart($custid);
-    } else {
-      // code pour les cookies
+    $panierArrayPourPanier=array();
+    $quantiteArrayPourPanier=array();
+    $panierAfficheArray=array();
+    $quantiteAfficheArray=array();
+    if(!empty($_COOKIE["panier"]) && !empty($_COOKIE["quantite"]))
+    {
+        $panierArrayPourPanier=unserialize($_COOKIE["panier"]);
+        $quantiteArrayPourPanier=unserialize($_COOKIE["quantite"]);
+    }           
+    $Pack= new ManagerPictures;    
+    for ($index=0;$index < count($panierArrayPourPanier);$index++) {
+        $temp=$Pack->GetSpecificPicture($panierArrayPourPanier[$index]);
+        $produit=$temp->fetch();
+        array_push($panierAfficheArray,$produit);
+        array_push($quantiteAfficheArray,$quantiteArrayPourPanier[$index]);
+        $temp->closeCursor();
     }
     require('view/viewPanier.php');
   }
@@ -91,6 +100,7 @@
     $resultOrders = $commande->GetOrders($custid);
     require('view/viewCommande.php');
   }
+
   function AjouterPanier(){
     $panier = !Empty($_POST['panier']) ? htmlentities($_POST['panier']):'';
     $quantite = !Empty($_POST['quantite']) ? htmlentities($_POST['quantite']):'';
@@ -122,4 +132,61 @@
     echo"|||";
     echo implode(":",$quantiteArray);  
 }
+function RetirerPanier(){
+  $panier = !Empty($_POST['panier']) ? htmlentities($_POST['panier']):'';
+  
+  $AllPanierArray=array();
+  $AllQuantiteArray=array();
+  $panierArrayTemp=array();
+  $quantiteArrayTemp=array();
+  if(!empty($_COOKIE["panier"]) && !empty($_COOKIE["quantite"]))
+  {
+      $AllPanierArray=unserialize($_COOKIE["panier"]);
+      $AllQuantiteArray=unserialize($_COOKIE["quantite"]);
+  }
+      for ($index=0; $index < count($AllPanierArray) ; $index++) { 
+          if($AllPanierArray[$index]!=$panier)
+          {               
+              array_push($panierArrayTemp,$AllPanierArray[$index]);
+              array_push($quantiteArrayTemp,$AllQuantiteArray[$index]);
+          }
+      }
+  
+  $panierArray_serialize = serialize($panierArrayTemp);
+  $quantiteArray_serialize = serialize($quantiteArrayTemp);
+  setcookie("panier",$panierArray_serialize,Time()*365*24*3600,null,null,false,true);
+  setcookie("quantite",$quantiteArray_serialize,Time()*365*24*3600,null,null,false,true);
+  echo implode('","',$panierArrayTemp);
+  echo"|||";
+  echo implode(":",$quantiteArrayTemp);  
+}
+function AjouterCommmande(){
+    $custid = 0;
+    $panier = new ManagerOrders;
+    if (!empty($_SESSION['custid'])) 
+    {
+      $custid = $_SESSION['custid'];
+      if(!empty($_COOKIE["panier"]) && !empty($_COOKIE["quantite"]))
+        {
+          $AllPanierArray=unserialize($_COOKIE["panier"]);
+          $AllQuantiteArray=unserialize($_COOKIE["quantite"]);
+          $Customer = $panier->CreateOrder($custid);
+          $CustomerID =$Customer->fetch();
+          for ($index=0; $index < count($AllPanierArray) ; $index++) { 
+            //echo($AllPanierArray[$index]);
+           // $OrderContent = $panier->AddOrderContent($CustomerID["CustomerId"],$AllPanierArray[$index],$AllQuantiteArray[$index]);
+          }
+          //echo($CustomerID["CustomerId"]);
+          $updateOrder = $panier->UpdateOrder($CustomerID["CustomerId"]);
+          //$panier->UpdateOrder($CustomerID["CustomerId"]);
+          
+        }
+      //require('view/viewAccueil.php');
+    }
+    else
+    {
+      require('view/viewConnexion.php');
+    }
+  
+} 
 ?>

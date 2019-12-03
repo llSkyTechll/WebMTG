@@ -1,7 +1,6 @@
 
 
-function AjouterPanier($idChoix){//À modifier
-    //var monid=this.id;
+function AjouterPanier($idChoix){
     swal('Ajouter au panier!',"",'success');
     $NumberOfItem=document.getElementById("quantity"+$idChoix).value;
     AjouterItemAuPanier($NumberOfItem,$idChoix);
@@ -39,3 +38,46 @@ function AjouterItemAuPanier($Quantite,$idProduit) {
     
 }
 
+function RetirerPanier($idChoix){
+     swal('Retirer du panier!',"",'success');
+    // NumberOfItem=document.getElementById("quantity"+$idChoix).value;    
+    $(document.getElementById("Group"+$idChoix)).addClass("d-none");
+    RetirerItemAuPanier($idChoix);	
+}
+function RetirerItemAuPanier($idProduit) {
+   
+
+    $.ajax({   
+        url 	: "index.php?action=RetirerPanier",
+        type 	: "POST",
+        data 	: {panier:$idProduit},   
+        success : function(output){
+                    alert(output);
+                    $choix="";
+                    $($choix).html(output);
+                },
+        error	: function(){
+                    $choix="";
+                    $($choix).html("Une erreur est survenue");
+                }	
+    });
+    
+}
+function PasserCommande(){
+    //swal('Commande effectué!',"",'success');   
+//    $(document.getElementById("Group"+$idChoix)).addClass("d-none");
+    $.ajax({   
+        url 	: "index.php?action=AjouterCommmande",
+        type 	: "POST",
+        data 	: {},   
+        success : function(output){
+                    alert(output);
+                    $choix="";
+                    $($choix).html(output);
+                },
+        error	: function(){
+                    $choix="";
+                    $($choix).html("Une erreur est survenue");
+                }	
+    });	
+}
