@@ -34,7 +34,7 @@
     else {
         Connexion();
     }
-    
+
   }
 
   function ValiderInformationInscription(){
@@ -53,11 +53,12 @@
     }
   }
 
-  function Deconnexion(){    
-      $_SESSION = array();
-      echo "<script type=\"text/javascript\">alert('Déconnexion effectuée avec succès');</script>";
+  function Deconnexion(){
+      if (!empty($_SESSION['custid'])) {
+        $_SESSION = array();
+        echo "<script type=\"text/javascript\">alert('Déconnexion effectuée avec succès');</script>";
+      }
       Accueil();
-   
   }
 
   function Connexion(){
@@ -110,10 +111,14 @@
   }
 
   function Commande(){
-    $commande = new ManagerOrders;
-    $custid = $_SESSION['custid'];
-    $resultOrders = $commande->GetOrders($custid);
-    require('view/viewCommande.php');
+    if (!empty($_SESSION['custid'])) {
+      $commande = new ManagerOrders;
+      $custid = $_SESSION['custid'];
+      $resultOrders = $commande->GetOrders($custid);
+      require('view/viewCommande.php');
+    }else {
+      Accueil();
+    }
   }
 
   function AjouterPanier(){
@@ -150,9 +155,9 @@
     }
   }
 function UpdatePanier(){
-  if (!Empty($_POST['panier']) && !Empty($_POST['quantity'])) {    
+  if (!Empty($_POST['panier']) && !Empty($_POST['quantity'])) {
     $panier = !Empty($_POST['panier']) ? htmlentities($_POST['panier']):'';
-    $quantity = !Empty($_POST['quantity']) ? htmlentities($_POST['quantity']):'';  
+    $quantity = !Empty($_POST['quantity']) ? htmlentities($_POST['quantity']):'';
     $panierArray=array();
     $quantiteArray=array();
     if(!empty($_COOKIE["panier"]) && !empty($_COOKIE["quantite"]))
@@ -166,7 +171,7 @@ function UpdatePanier(){
       {
         $quantiteArray[$index] = $quantity;
       }
-    }    
+    }
     $panierArray_serialize = serialize($panierArray);
     $quantiteArray_serialize = serialize($quantiteArray);
     setcookie("panier",$panierArray_serialize,Time()*365*24*3600,null,null,false,true);
@@ -178,9 +183,9 @@ function UpdatePanier(){
 }
 function RetirerPanier(){
   if (!Empty($_POST['panier'])) {
-  
+
     $panier = !Empty($_POST['panier']) ? htmlentities($_POST['panier']):'';
-  
+
     $AllPanierArray=array();
     $AllQuantiteArray=array();
     $panierArrayTemp=array();
@@ -197,7 +202,7 @@ function RetirerPanier(){
                 array_push($quantiteArrayTemp,$AllQuantiteArray[$index]);
             }
         }
-  
+
     $panierArray_serialize = serialize($panierArrayTemp);
     $quantiteArray_serialize = serialize($quantiteArrayTemp);
     setcookie("panier",$panierArray_serialize,Time()*365*24*3600,null,null,false,true);
@@ -206,7 +211,7 @@ function RetirerPanier(){
   else {
     Accueil();
   }
-  
+
 }
 function AjouterCommmande(){
     $custid = 0;
