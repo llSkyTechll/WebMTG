@@ -36,7 +36,11 @@ $gestion_ajax='type="text/javascript" src="js\gestion_accueil.js"';
 										<img align="center" src="<?php echo $enregistrement['picture']; ?>" class="img-fluid image" alt="<?php echo $enregistrement['edition']; ?>">
 										<p align="center"> <?php echo $enregistrement['description']; ?></p>
 										<p align="center">Prix: <?php echo $enregistrement['price'] ?> $</p>
-										<div id="ImagePanier<?php echo $enregistrement['packid']; ?>"></div>
+										<div id="ImagePanier<?php echo $enregistrement['packid']; ?>"><?php for ($index=0;$index < count($lePanierDID);$index++) {
+											if ($lePanierDID[$index] == $enregistrement['packid']) {
+												echo"<i class='fas fa-shopping-cart'></i>";
+											}
+											}?></div>
 										<button id="ImagePanier<?php echo $enregistrement['packid']; ?>" type="button" class="btn btn-light" value="<?php echo $enregistrement['packid']; ?>" onclick="AjouterPanier(<?php echo $enregistrement['packid']; ?>)">Ajouter au panier</button>
 								</div>
 							<?php } ?>
